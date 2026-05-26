@@ -1,0 +1,111 @@
+@charset "UTF-8";
+:root {
+  --transition: all 0.3s ease 0s;
+  --primaryColor: #0073FF;
+  --primaryFgColor: #ffffff;
+  --bodyColor: #616C74;
+  --borderColor: #E5E5E5;
+}
+
+.ultimate-data-table {
+  --borderWidth: 1px;
+  --borderStyle: solid;
+}
+.ultimate-data-table .dt-layout-cell.dt-layout-full {
+  overflow-x: auto;
+}
+.ultimate-data-table .dt-container .dt-layout-row {
+  display: flex !important;
+  justify-content: space-between !important;
+}
+.ultimate-data-table .dt-container .dt-layout-row .dt-layout-cell {
+  margin: 0 !important;
+  justify-content: unset !important;
+}
+.ultimate-data-table .dt-container .dt-layout-row input,
+.ultimate-data-table .dt-container .dt-layout-row select {
+  height: 45px;
+  border: var(--borderWidth) var(--borderStyle) var(--borderColor);
+  padding: 10px 15px;
+  border-radius: 0;
+}
+.ultimate-data-table .dt-container .dt-layout-row .dt-length {
+  position: relative;
+}
+.ultimate-data-table .dt-container .dt-layout-row .dt-length:after {
+  position: absolute;
+  content: "⌵";
+  right: 0;
+  bottom: 11px;
+  right: 15px;
+  font-weight: 700;
+  pointer-events: none;
+}
+.ultimate-data-table .dt-container .dt-layout-row select {
+  min-width: 90px;
+  word-wrap: normal;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: unset !important;
+}
+.ultimate-data-table .dt-container .dt-layout-row select::-ms-expand {
+  display: none;
+}
+.ultimate-data-table .dt-container .dt-layout-row select:focus {
+  outline: transparent;
+}
+.ultimate-data-table .dt-container .dt-layout-row select option {
+  line-height: 1.8;
+  padding: 5px 10px;
+}
+.ultimate-data-table .dt-container .dt-layout-row .dt-search input.dt-input {
+  margin: 0;
+}
+.ultimate-data-table .dt-container .dt-layout-row .dt-paging nav {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+.ultimate-data-table .dt-container .dt-layout-row .dt-paging nav .dt-paging-button {
+  border-radius: 0;
+  background: transparent;
+  margin: 0;
+  border: var(--borderWidth) var(--borderStyle) var(--borderColor);
+  font-weight: normal;
+  box-shadow: none;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  line-height: 1;
+  color: var(--bodyColor) !important;
+  flex-shrink: 0;
+}
+.ultimate-data-table .dt-container .dt-layout-row .dt-paging nav .dt-paging-button.current, .ultimate-data-table .dt-container .dt-layout-row .dt-paging nav .dt-paging-button.disabled {
+  color: rgba(0, 0, 0, 0.5) !important;
+  pointer-events: none;
+}
+.ultimate-data-table .dt-container .dt-layout-row .dt-paging nav .dt-paging-button:hover, .ultimate-data-table .dt-container .dt-layout-row .dt-paging nav .dt-paging-button.current {
+  background: var(--primaryColor);
+  color: var(--primaryFgColor) !important;
+  border-color: var(--primaryColor);
+}
+.ultimate-data-table .dt-container .dt-layout-row table {
+  width: 100%;
+  overflow-x: auto;
+  border: var(--borderWidth) var(--borderStyle) var(--borderColor);
+}
+.ultimate-data-table .dt-container .dt-layout-row table th,
+.ultimate-data-table .dt-container .dt-layout-row table td {
+  border: var(--borderWidth) var(--borderStyle) var(--borderColor) !important;
+  outline: none !important;
+  text-align: inherit;
+}
+@media (max-width: 767px) {
+  .ultimate-data-table .dt-container .dt-layout-row table th,
+  .ultimate-data-table .dt-container .dt-layout-row table td {
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,119 @@
+// Var
+:root {
+    --transition: all 0.3s ease 0s;
+    --primaryColor: #0073FF;
+    --primaryFgColor: #ffffff;
+    --bodyColor: #616C74;
+    --borderColor: #E5E5E5;
+}
+
+.ultimate-data-table {
+    --borderWidth: 1px;
+    --borderStyle: solid;
+    .dt-layout-cell.dt-layout-full {
+        overflow-x: auto;
+    }
+    .dt-container {
+        .dt-layout-row {
+            display: flex !important;
+            justify-content: space-between !important;
+            .dt-layout-cell {
+                margin: 0 !important;
+                justify-content: unset !important;
+            }
+            input,
+            select {
+                height: 45px;
+                border: var(--borderWidth) var(--borderStyle) var(--borderColor);
+                padding: 10px 15px;
+                border-radius: 0;
+            }
+            .dt-length {
+                position: relative;
+                &:after {
+                    position: absolute;
+                    content: '⌵';
+                    right: 0;
+                    bottom: 11px;
+                    right: 15px;
+                    font-weight: 700;
+                    pointer-events: none;
+                }
+            }
+            select {
+                min-width: 90px;
+                word-wrap: normal;
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                background-image: unset !important;
+
+                &::-ms-expand {
+                    display: none;
+                }
+
+                &:focus {
+                    outline: transparent;
+                }
+
+                option {
+                    line-height: 1.8;
+                    padding: 5px 10px;
+                }
+            }
+            .dt-search {
+                input.dt-input {
+                    margin: 0;
+                }
+            }
+            .dt-paging {
+                nav {
+                    display: flex;
+                    gap: 10px;
+                    width: 100%;
+                    .dt-paging-button {
+                        border-radius: 0;
+                        background: transparent;
+                        margin: 0;
+                        border: var(--borderWidth) var(--borderStyle) var(--borderColor);
+                        font-weight: normal;
+                        box-shadow: none;
+                        transition: var(--transition);
+                        display: inline-flex;
+                        align-items: center;
+                        text-align: center;
+                        justify-content: center;
+                        line-height: 1;
+                        color: var(--bodyColor) !important;
+                        flex-shrink: 0;
+                        &.current,
+                        &.disabled {
+                            color: rgba(0,0,0,0.5) !important;
+                            pointer-events: none;
+                        }
+                        &:hover,
+                        &.current {
+                            background: var(--primaryColor);
+                            color: var(--primaryFgColor) !important;
+                            border-color: var(--primaryColor);
+                        }
+                    }
+                }
+            }
+            table {
+                width: 100%;
+                overflow-x: auto;
+                border: var(--borderWidth) var(--borderStyle) var(--borderColor);
+                th,
+                td {
+                    border: var(--borderWidth) var(--borderStyle) var(--borderColor) !important;
+                    outline: none !important;
+                    text-align: inherit;
+                    @media (max-width: 767px) {
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
+    }
+}

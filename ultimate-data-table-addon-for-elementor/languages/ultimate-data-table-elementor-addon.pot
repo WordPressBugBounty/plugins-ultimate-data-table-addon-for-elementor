@@ -1,0 +1,570 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: ultimate-data-table-addon-for-elementor\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-27 11:47+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.0; wp-6.8.3; php-8.4.10\n"
+"X-Domain: ultimate-data-table-addon-for-elementor"
+
+#: widget/el-ultimate-data-table.php:518
+msgid "(filtered from _MAX_ total entries)"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:89 widget/el-ultimate-data-table.php:90
+#: widget/el-ultimate-data-table.php:273 widget/el-ultimate-data-table.php:274
+#: widget/el-ultimate-data-table.php:296 widget/el-ultimate-data-table.php:297
+msgid "1"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1945
+msgid "Active"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:63 widget/el-ultimate-data-table.php:247
+msgid "Advance Settings"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:133 widget/el-ultimate-data-table.php:302
+#: widget/el-ultimate-data-table.php:660 widget/el-ultimate-data-table.php:792
+msgid "Alignment"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1207
+#: widget/el-ultimate-data-table.php:1468
+msgid "Background"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:705 widget/el-ultimate-data-table.php:837
+msgid "Background Color"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:636 widget/el-ultimate-data-table.php:757
+#: widget/el-ultimate-data-table.php:911 widget/el-ultimate-data-table.php:1323
+#: widget/el-ultimate-data-table.php:1584
+#: widget/el-ultimate-data-table.php:1934
+#: widget/el-ultimate-data-table.php:1969
+msgid "Border Color"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1228
+#: widget/el-ultimate-data-table.php:1489
+#: widget/el-ultimate-data-table.php:1824
+msgid "Border Radius"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:594 widget/el-ultimate-data-table.php:715
+#: widget/el-ultimate-data-table.php:869 widget/el-ultimate-data-table.php:1281
+#: widget/el-ultimate-data-table.php:1542
+msgid "Border Style"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:612 widget/el-ultimate-data-table.php:733
+#: widget/el-ultimate-data-table.php:887 widget/el-ultimate-data-table.php:1299
+#: widget/el-ultimate-data-table.php:1560
+msgid "Border Width"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:959 widget/el-ultimate-data-table.php:1721
+msgid "Bottom"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:582
+msgid "Break Words"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Build fully customizable, responsive, and feature-rich data tables in "
+"Elementor using DataTables.js. Supports live search, pagination, sorting, "
+"rowspan/colspan, custom labels, and full Elementor styling — no coding "
+"required."
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:770 widget/el-ultimate-data-table.php:924
+msgid "Cell Padding"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:144 widget/el-ultimate-data-table.php:313
+#: widget/el-ultimate-data-table.php:668 widget/el-ultimate-data-table.php:800
+#: widget/el-ultimate-data-table.php:974 widget/el-ultimate-data-table.php:1105
+#: widget/el-ultimate-data-table.php:1366
+#: widget/el-ultimate-data-table.php:1736
+#: widget/el-ultimate-data-table.php:2011
+msgid "Center"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:175 widget/el-ultimate-data-table.php:345
+#: widget/el-ultimate-data-table.php:1160
+#: widget/el-ultimate-data-table.php:1197
+#: widget/el-ultimate-data-table.php:1421
+#: widget/el-ultimate-data-table.php:1458
+#: widget/el-ultimate-data-table.php:1606
+#: widget/el-ultimate-data-table.php:1884
+#: widget/el-ultimate-data-table.php:1916
+#: widget/el-ultimate-data-table.php:1951
+#: widget/el-ultimate-data-table.php:2066
+msgid "Color"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:72 widget/el-ultimate-data-table.php:255
+msgid "colSpan"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:83 widget/el-ultimate-data-table.php:267
+msgid "colSpan Number"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:992 widget/el-ultimate-data-table.php:1754
+msgid "Column"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1045
+msgid "Column Controls"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:987 widget/el-ultimate-data-table.php:1749
+msgid "Column Direction"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:993 widget/el-ultimate-data-table.php:1755
+msgid "Column Reverse"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:390
+msgid "Configuration"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:95
+msgid "Custom Width"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:602 widget/el-ultimate-data-table.php:723
+#: widget/el-ultimate-data-table.php:877 widget/el-ultimate-data-table.php:1289
+#: widget/el-ultimate-data-table.php:1550
+msgid "Dashed"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:24
+msgid "Data Table"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:462 widget/el-ultimate-data-table.php:581
+#: widget/el-ultimate-data-table.php:598 widget/el-ultimate-data-table.php:719
+#: widget/el-ultimate-data-table.php:873 widget/el-ultimate-data-table.php:1285
+#: widget/el-ultimate-data-table.php:1546
+msgid "Default"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:601 widget/el-ultimate-data-table.php:722
+#: widget/el-ultimate-data-table.php:876 widget/el-ultimate-data-table.php:1288
+#: widget/el-ultimate-data-table.php:1549
+msgid "Dotted"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1442
+msgid "Dropdown"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:478
+msgid "Enable Ordering"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:433
+msgid "Enable Pagination"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:397
+msgid "Enable Search"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:975 widget/el-ultimate-data-table.php:1737
+msgid "End"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1340
+msgid "Entries Dropdown"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:448
+msgid "Entries per page:"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:468
+msgid "First + Numbers + Last"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1004
+#: widget/el-ultimate-data-table.php:1766
+msgid "Flex Wrap"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:466
+msgid "Full (First / Prev / Next / Last)"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:467
+msgid "Full Numbers"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1019
+#: widget/el-ultimate-data-table.php:1781
+msgid "Gap Between"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1260
+#: widget/el-ultimate-data-table.php:1521
+#: widget/el-ultimate-data-table.php:1856
+msgid "Height"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:400 widget/el-ultimate-data-table.php:436
+#: widget/el-ultimate-data-table.php:481 widget/el-ultimate-data-table.php:494
+msgid "Hide"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:970 widget/el-ultimate-data-table.php:1732
+msgid "Horizontal Align"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1910
+msgid "Hover"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://wordpress.org/plugins/ultimate-data-table-addon-for-elementor/"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1597
+msgid "Icon"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1985
+msgid "Info Style"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:504
+msgid "Info Text"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:516
+msgid "Info Text After Filter"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:566
+msgid "Inner Cell Padding"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1181
+msgid "Input"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1797
+msgid "Item"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:152 widget/el-ultimate-data-table.php:321
+#: widget/el-ultimate-data-table.php:676 widget/el-ultimate-data-table.php:808
+msgid "Justified"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:409 widget/el-ultimate-data-table.php:446
+#: widget/el-ultimate-data-table.php:1144
+#: widget/el-ultimate-data-table.php:1405
+msgid "Label"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:140 widget/el-ultimate-data-table.php:309
+#: widget/el-ultimate-data-table.php:664 widget/el-ultimate-data-table.php:796
+#: widget/el-ultimate-data-table.php:1101
+#: widget/el-ultimate-data-table.php:1362
+#: widget/el-ultimate-data-table.php:2007
+msgid "Left"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1034
+#: widget/el-ultimate-data-table.php:1170
+#: widget/el-ultimate-data-table.php:1431
+#: widget/el-ultimate-data-table.php:2076
+msgid "Margin"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:958 widget/el-ultimate-data-table.php:1720
+msgid "Middle"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1239
+#: widget/el-ultimate-data-table.php:1500
+msgid "Min Width"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:227
+msgid "New Row"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:65 widget/el-ultimate-data-table.php:77
+#: widget/el-ultimate-data-table.php:100 widget/el-ultimate-data-table.php:229
+#: widget/el-ultimate-data-table.php:249 widget/el-ultimate-data-table.php:260
+#: widget/el-ultimate-data-table.php:284 widget/el-ultimate-data-table.php:849
+msgid "No"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:583
+msgid "No Break"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:423
+msgid "No data found"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:421
+msgid "No Data Text"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1007
+#: widget/el-ultimate-data-table.php:1769
+msgid "No Wrap"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:599 widget/el-ultimate-data-table.php:720
+#: widget/el-ultimate-data-table.php:874 widget/el-ultimate-data-table.php:1286
+#: widget/el-ultimate-data-table.php:1547
+msgid "None"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1878
+msgid "Normal"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:465
+msgid "Numbers Only"
+msgstr ""
+
+#: admin-menus.php:26 admin-menus.php:27
+msgid "Overview"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1217
+#: widget/el-ultimate-data-table.php:1478
+#: widget/el-ultimate-data-table.php:1813
+msgid "Padding"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1677
+msgid "Pagination"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:458
+msgid "Pagination Type"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1634
+msgid "Position X"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1652
+msgid "Position Y"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:148 widget/el-ultimate-data-table.php:317
+#: widget/el-ultimate-data-table.php:672 widget/el-ultimate-data-table.php:804
+#: widget/el-ultimate-data-table.php:1109
+#: widget/el-ultimate-data-table.php:1370
+#: widget/el-ultimate-data-table.php:2015
+msgid "Right"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:990 widget/el-ultimate-data-table.php:1752
+msgid "Row"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:946
+msgid "Row Controls"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:991 widget/el-ultimate-data-table.php:1753
+msgid "Row Reverse"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:939
+msgid "Row/Column"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:279
+msgid "rowSpan"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:290
+msgid "rowSpan Number"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1079
+msgid "Search"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:411
+msgid "Search:"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:856
+msgid "Secondary Background Color"
+msgstr ""
+
+#: admin-menus.php:36 admin-menus.php:37
+msgid "Settings"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:399 widget/el-ultimate-data-table.php:435
+#: widget/el-ultimate-data-table.php:480 widget/el-ultimate-data-table.php:493
+msgid "Show"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:491
+msgid "Show Table Info"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:506
+msgid "Showing _START_ to _END_ of _TOTAL_ entries"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:463
+msgid "Simple (Prev / Next)"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:464
+msgid "Simple Numbers"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1613
+msgid "Size"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:600 widget/el-ultimate-data-table.php:721
+#: widget/el-ultimate-data-table.php:875 widget/el-ultimate-data-table.php:1287
+#: widget/el-ultimate-data-table.php:1548
+msgid "Solid"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:976 widget/el-ultimate-data-table.php:1738
+msgid "Space Between"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:973 widget/el-ultimate-data-table.php:1735
+msgid "Start"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:847
+msgid "Striped Background"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:220 widget/el-ultimate-data-table.php:785
+msgid "Table Body"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:369
+msgid "Table Body Cell"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:238 widget/el-ultimate-data-table.php:239
+#: widget/el-ultimate-data-table.php:374 widget/el-ultimate-data-table.php:377
+msgid "Table Data"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:548
+msgid "Table Global"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:44 widget/el-ultimate-data-table.php:54
+#: widget/el-ultimate-data-table.php:55 widget/el-ultimate-data-table.php:204
+#: widget/el-ultimate-data-table.php:207 widget/el-ultimate-data-table.php:653
+msgid "Table Header"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:199
+msgid "Table Header Cell"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:51 widget/el-ultimate-data-table.php:235
+#: widget/el-ultimate-data-table.php:2050
+msgid "Text"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1097
+#: widget/el-ultimate-data-table.php:1358
+#: widget/el-ultimate-data-table.php:2003
+msgid "Text Align"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:688 widget/el-ultimate-data-table.php:820
+msgid "Text Color"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:957 widget/el-ultimate-data-table.php:1719
+msgid "Top"
+msgstr ""
+
+#: admin-menus.php:14 admin-menus.php:15
+msgid "Ultimate Data Table"
+msgstr ""
+
+#. Name of the plugin
+msgid "ultimate-data-table-addon-for-elementor"
+msgstr ""
+
+#: ultimate-data-table-addon-for-elementor.php:50
+msgid ""
+"Ultimate Data Table plugin requires Elementor to be installed and active."
+msgstr ""
+
+#: base.php:32
+msgid "Ultimate Table"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:954 widget/el-ultimate-data-table.php:1716
+msgid "Vertical Align"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:106 widget/el-ultimate-data-table.php:1054
+#: widget/el-ultimate-data-table.php:1123
+#: widget/el-ultimate-data-table.php:1384
+#: widget/el-ultimate-data-table.php:1695
+#: widget/el-ultimate-data-table.php:1835
+#: widget/el-ultimate-data-table.php:2029
+msgid "Width"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:577
+msgid "Word Break"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1008
+#: widget/el-ultimate-data-table.php:1770
+msgid "Wrap"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:1089
+#: widget/el-ultimate-data-table.php:1350
+#: widget/el-ultimate-data-table.php:1687
+#: widget/el-ultimate-data-table.php:1995
+msgid "Wrapper"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:555
+msgid "Wrapper Margin"
+msgstr ""
+
+#: widget/el-ultimate-data-table.php:66 widget/el-ultimate-data-table.php:78
+#: widget/el-ultimate-data-table.php:101 widget/el-ultimate-data-table.php:230
+#: widget/el-ultimate-data-table.php:250 widget/el-ultimate-data-table.php:261
+#: widget/el-ultimate-data-table.php:285 widget/el-ultimate-data-table.php:850
+msgid "Yes"
+msgstr ""
