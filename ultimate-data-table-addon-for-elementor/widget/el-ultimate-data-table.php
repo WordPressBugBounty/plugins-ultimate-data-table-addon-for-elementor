@@ -45,153 +45,145 @@ class Ultimate_Data_Table_Register_Elementor_Widget extends \Elementor\Widget_Ba
 			]
 		);
 			$repeaterHeader = new Repeater();
-			$repeaterHeader->add_control(
-				'text', [
-					'label' => esc_html__( 'Text', 'ultimate-data-table-addon-for-elementor' ),
-					'type' => Controls_Manager::TEXT,
-					'label_block' => true,
-					'placeholder' => esc_html__( 'Table Header', 'ultimate-data-table-addon-for-elementor' ),
-					'default' => esc_html__( 'Table Header', 'ultimate-data-table-addon-for-elementor' ),
-					'dynamic' => [
-						'active' => true,
+			$repeaterHeader->start_controls_tabs( 'table_header_tabs' );
+				$repeaterHeader->start_controls_tab(
+					'table_header_content_tab',
+					[
+						'label' => esc_html__( 'Content', 'ultimate-data-table-addon-for-elementor' ),
 					]
-				]
-			);
-			$repeaterHeader->add_control(
-				'advance', [
-					'label' => esc_html__( 'Advance Settings', 'ultimate-data-table-addon-for-elementor' ),
-					'type' => Controls_Manager::SWITCHER,
-					'label_off' => esc_html__( 'No', 'ultimate-data-table-addon-for-elementor' ),
-					'label_on' => esc_html__( 'Yes', 'ultimate-data-table-addon-for-elementor' ),
-					'default' => 'no'
-				]
-			);
-			$repeaterHeader->add_control(
-				'colspan', [
-					'label' => esc_html__( 'colSpan', 'ultimate-data-table-addon-for-elementor' ),
-					'type' => Controls_Manager::SWITCHER,
-					'condition' => [
-						'advance' => 'yes',
-					],
-					'label_off' => esc_html__( 'No', 'ultimate-data-table-addon-for-elementor' ),
-					'label_on' => esc_html__( 'Yes', 'ultimate-data-table-addon-for-elementor' ),
-				]
-			);
-			$repeaterHeader->add_control(
-				'colspannumber', [
-					'label' => esc_html__( 'colSpan Number', 'ultimate-data-table-addon-for-elementor' ),
-					'type' => Controls_Manager::TEXT,
-					'condition' => [
-						'advance' => 'yes',
-						'colspan' => 'yes',
-					],
-					'placeholder' => esc_html__( '1', 'ultimate-data-table-addon-for-elementor' ),
-					'default' => esc_html__( '1', 'ultimate-data-table-addon-for-elementor' ),
-				]
-			);
-			$repeaterHeader->add_control(
-				'customwidth', [
-					'label' => esc_html__( 'Custom Width', 'ultimate-data-table-addon-for-elementor' ),
-					'type' => Controls_Manager::SWITCHER,
-					'condition' => [
-						'advance' => 'yes',
-					],
-					'label_off' => esc_html__( 'No', 'ultimate-data-table-addon-for-elementor' ),
-					'label_on' => esc_html__( 'Yes', 'ultimate-data-table-addon-for-elementor' ),
-				]
-			);
-			$repeaterHeader->add_control(
-				'width', [
-					'label' => esc_html__( 'Width', 'ultimate-data-table-addon-for-elementor' ),
-					'type' => Controls_Manager::SLIDER,
-					'condition' => [
-						'advance' => 'yes',
-						'customwidth' => 'yes',
-					],
-					'range' => [
-						'%' => [
-							'min' => 0,
-							'max' => 100,
-						],
-						'px' => [
-							'min' => 1,
-							'max' => 1000,
-						],
-					],
-					'default' => [
-						'size' => 30,
-						'unit' => '%',
-					],
-					'size_units' => [ '%', 'px' ],
-					'selectors' => [ '{{WRAPPER}} .ultimate-data-table table .ultimate-data-table-header {{CURRENT_ITEM}}' => 'width: {{SIZE}}{{UNIT}};',
+				);
+					$repeaterHeader->add_control(
+						'text', [
+							'label' => esc_html__( 'Text', 'ultimate-data-table-addon-for-elementor' ),
+							'type' => Controls_Manager::TEXT,
+							'label_block' => true,
+							'placeholder' => esc_html__( 'Table Header', 'ultimate-data-table-addon-for-elementor' ),
+							'default' => esc_html__( 'Table Header', 'ultimate-data-table-addon-for-elementor' ),
+							'dynamic' => [
+								'active' => true,
+							]
+						]
+					);
+				$repeaterHeader->end_controls_tab();
+
+				$repeaterHeader->start_controls_tab(
+					'table_header_style_tab',
+					[
+						'label' => esc_html__( 'Style', 'ultimate-data-table-addon-for-elementor' ),
 					]
-				]
-			);
-			$repeaterHeader->add_control(
-				'align', [
-					'label' => esc_html__( 'Alignment', 'ultimate-data-table-addon-for-elementor' ),
-					'type' => Controls_Manager::CHOOSE,
-					'condition' => [
-						'advance' => 'yes',
-					],
-					'options' => [
-						'left' => [
-							'title' => esc_html__( 'Left', 'ultimate-data-table-addon-for-elementor' ),
-							'icon' => 'eicon-text-align-left',
-						],
-						'center' => [
-							'title' => esc_html__( 'Center', 'ultimate-data-table-addon-for-elementor' ),
-							'icon' => 'eicon-text-align-center',
-						],
-						'right' => [
-							'title' => esc_html__( 'Right', 'ultimate-data-table-addon-for-elementor' ),
-							'icon' => 'eicon-text-align-right',
-						],
-						'justify' => [
-							'title' => esc_html__( 'Justified', 'ultimate-data-table-addon-for-elementor' ),
-							'icon' => 'eicon-text-align-justify',
-						],
-					],
-					'default' => '',
-					'selectors' => [
-						'{{WRAPPER}} .ultimate-data-table table .ultimate-data-table-header {{CURRENT_ITEM}}' => 'text-align: {{VALUE}};',
+				);
+					$repeaterHeader->add_control(
+						'align', [
+							'label' => esc_html__( 'Alignment', 'ultimate-data-table-addon-for-elementor' ),
+							'type' => Controls_Manager::CHOOSE,
+							'options' => [
+								'left' => [
+									'title' => esc_html__( 'Left', 'ultimate-data-table-addon-for-elementor' ),
+									'icon' => 'eicon-text-align-left',
+								],
+								'center' => [
+									'title' => esc_html__( 'Center', 'ultimate-data-table-addon-for-elementor' ),
+									'icon' => 'eicon-text-align-center',
+								],
+								'right' => [
+									'title' => esc_html__( 'Right', 'ultimate-data-table-addon-for-elementor' ),
+									'icon' => 'eicon-text-align-right',
+								],
+								'justify' => [
+									'title' => esc_html__( 'Justified', 'ultimate-data-table-addon-for-elementor' ),
+									'icon' => 'eicon-text-align-justify',
+								],
+							],
+							'default' => '',
+							'selectors' => [
+								'{{WRAPPER}} .ultimate-data-table table .ultimate-data-table-header {{CURRENT_ITEM}}' => 'text-align: {{VALUE}};',
+							]
+						]
+					);
+					$repeaterHeader->add_control(
+						'this_color',
+						[
+							'label' => esc_html__( 'Color', 'ultimate-data-table-addon-for-elementor' ),
+							'type' => Controls_Manager::COLOR,
+							'selectors' => [
+								'{{WRAPPER}} .ultimate-data-table table .ultimate-data-table-header {{CURRENT_ITEM}}' => 'color: {{VALUE}}',
+							],
+						]
+					);
+					$repeaterHeader->add_control(
+						'this_background',
+						[
+							'label' => esc_html__( 'Background Color', 'ultimate-data-table-addon-for-elementor' ),
+							'type' => Controls_Manager::COLOR,
+							'selectors' => [
+								'{{WRAPPER}} .ultimate-data-table table .ultimate-data-table-header {{CURRENT_ITEM}}' => 'background-color: {{VALUE}}',
+							],
+						]
+					);
+				$repeaterHeader->end_controls_tab();
+
+				$repeaterHeader->start_controls_tab(
+					'table_header_advance_tab',
+					[
+						'label' => esc_html__( 'Advanced', 'ultimate-data-table-addon-for-elementor' ),
 					]
-				]
-			);
-			$repeaterHeader->add_group_control(
-				Group_Control_Typography::get_type(),
-				[
-					'name' => 'this_typography',
-					'selector' => '{{WRAPPER}} .ultimate-data-table table .ultimate-data-table-header {{CURRENT_ITEM}}',
-					'condition' => [
-						'advance' => 'yes',
-					],
-				]
-			);
-			$repeaterHeader->add_control(
-				'this_color',
-				[
-					'label' => esc_html__( 'Color', 'ultimate-data-table-addon-for-elementor' ),
-					'type' => Controls_Manager::COLOR,
-					'selectors' => [
-						'{{WRAPPER}} .ultimate-data-table table .ultimate-data-table-header {{CURRENT_ITEM}}' => 'color: {{VALUE}}',
-					],
-					'condition' => [
-						'advance' => 'yes',
-					],
-				]
-			);
-			$repeaterHeader->add_group_control(
-				Group_Control_Background::get_type(),
-				[
-					'name' => 'this_background',
-					'types' => [ 'classic', 'gradient' ],
-					'selector' => '{{WRAPPER}} .ultimate-data-table table .ultimate-data-table-header {{CURRENT_ITEM}}',
-					'condition' => [
-						'advance' => 'yes',
-					],
-				]
-			);
+				);
+					$repeaterHeader->add_control(
+						'colspan', [
+							'label' => esc_html__( 'colSpan', 'ultimate-data-table-addon-for-elementor' ),
+							'type' => Controls_Manager::SWITCHER,
+							'label_off' => esc_html__( 'No', 'ultimate-data-table-addon-for-elementor' ),
+							'label_on' => esc_html__( 'Yes', 'ultimate-data-table-addon-for-elementor' ),
+						]
+					);
+					$repeaterHeader->add_control(
+						'colspannumber', [
+							'label' => esc_html__( 'colSpan Number', 'ultimate-data-table-addon-for-elementor' ),
+							'type' => Controls_Manager::TEXT,
+							'condition' => [
+								'colspan' => 'yes',
+							],
+							'placeholder' => esc_html__( '1', 'ultimate-data-table-addon-for-elementor' ),
+							'default' => esc_html__( '1', 'ultimate-data-table-addon-for-elementor' ),
+						]
+					);
+					$repeaterHeader->add_control(
+						'customwidth', [
+							'label' => esc_html__( 'Custom Width', 'ultimate-data-table-addon-for-elementor' ),
+							'type' => Controls_Manager::SWITCHER,
+							'label_off' => esc_html__( 'No', 'ultimate-data-table-addon-for-elementor' ),
+							'label_on' => esc_html__( 'Yes', 'ultimate-data-table-addon-for-elementor' ),
+						]
+					);
+					$repeaterHeader->add_control(
+						'width', [
+							'label' => esc_html__( 'Width', 'ultimate-data-table-addon-for-elementor' ),
+							'type' => Controls_Manager::SLIDER,
+							'condition' => [
+								'customwidth' => 'yes',
+							],
+							'range' => [
+								'%' => [
+									'min' => 0,
+									'max' => 100,
+								],
+								'px' => [
+									'min' => 1,
+									'max' => 1000,
+								],
+							],
+							'default' => [
+								'size' => 30,
+								'unit' => '%',
+							],
+							'size_units' => [ '%', 'px' ],
+							'selectors' => [ '{{WRAPPER}} .ultimate-data-table table .ultimate-data-table-header {{CURRENT_ITEM}}' => 'width: {{SIZE}}{{UNIT}};',
+							]
+						]
+					);
+				$repeaterHeader->end_controls_tab();
+			$repeaterHeader->end_controls_tabs();
+
 			$this->add_control(
 				'table_header',
 				[
@@ -221,147 +213,141 @@ class Ultimate_Data_Table_Register_Elementor_Widget extends \Elementor\Widget_Ba
 			]
 		);
 			$repeaterBody = new Repeater();
-			$repeaterBody->add_control(
-				'row', [
-					'label' => esc_html__( 'New Row', 'ultimate-data-table-addon-for-elementor' ),
-					'type' => Controls_Manager::SWITCHER,
-					'label_off' => esc_html__( 'No', 'ultimate-data-table-addon-for-elementor' ),
-					'label_on' => esc_html__( 'Yes', 'ultimate-data-table-addon-for-elementor' ),
-				]
-			);
-			$repeaterBody->add_control(
-				'text', [
-					'label' => esc_html__( 'Text', 'ultimate-data-table-addon-for-elementor' ),
-					'type' => Controls_Manager::TEXTAREA,
-					'label_block' => true,
-					'placeholder' => esc_html__( 'Table Data', 'ultimate-data-table-addon-for-elementor' ),
-					'default' => esc_html__( 'Table Data', 'ultimate-data-table-addon-for-elementor' ),
-					'dynamic' => [
-						'active' => true,
+			$repeaterBody->start_controls_tabs( 'table_header_tabs' );
+				$repeaterBody->start_controls_tab(
+					'table_body_content_tab',
+					[
+						'label' => esc_html__( 'Content', 'ultimate-data-table-addon-for-elementor' ),
 					]
-				]
-			);
-			$repeaterBody->add_control(
-				'advance', [
-					'label' => esc_html__( 'Advance Settings', 'ultimate-data-table-addon-for-elementor' ),
-					'type' => Controls_Manager::SWITCHER,
-					'label_off' => esc_html__( 'No', 'ultimate-data-table-addon-for-elementor' ),
-					'label_on' => esc_html__( 'Yes', 'ultimate-data-table-addon-for-elementor' ),
-				]
-			);
-			$repeaterBody->add_control(
-				'colspan', [
-					'label' => esc_html__( 'colSpan', 'ultimate-data-table-addon-for-elementor' ),
-					'type' => Controls_Manager::SWITCHER,
-					'condition' => [
-						'advance' => 'yes',
-					],
-					'label_off' => esc_html__( 'No', 'ultimate-data-table-addon-for-elementor' ),
-					'label_on' => esc_html__( 'Yes', 'ultimate-data-table-addon-for-elementor' ),
-					'separator' => 'before'
-				]
-			);
-			$repeaterBody->add_control(
-				'colspannumber', [
-					'label' => esc_html__( 'colSpan Number', 'ultimate-data-table-addon-for-elementor' ),
-					'type' => Controls_Manager::TEXT,
-					'condition' => [
-						'advance' => 'yes',
-						'colspan' => 'yes',
-					],
-					'placeholder' => esc_html__( '1', 'ultimate-data-table-addon-for-elementor' ),
-					'default' => esc_html__( '1', 'ultimate-data-table-addon-for-elementor' ),
-				]
-			);
-			$repeaterBody->add_control(
-				'rowspan', [
-					'label' => esc_html__( 'rowSpan', 'ultimate-data-table-addon-for-elementor' ),
-					'type' => Controls_Manager::SWITCHER,
-					'condition' => [
-						'advance' => 'yes',
-					],
-					'label_off' => esc_html__( 'No', 'ultimate-data-table-addon-for-elementor' ),
-					'label_on' => esc_html__( 'Yes', 'ultimate-data-table-addon-for-elementor' ),
-				]
-			);
-			$repeaterBody->add_control(
-				'rowspannumber', [
-					'label' => esc_html__( 'rowSpan Number', 'ultimate-data-table-addon-for-elementor' ),
-					'type' => Controls_Manager::TEXT,
-					'condition' => [
-						'advance' => 'yes',
-						'rowspan' => 'yes',
-					],
-					'placeholder' => esc_html__( '1', 'ultimate-data-table-addon-for-elementor' ),
-					'default' => esc_html__( '1', 'ultimate-data-table-addon-for-elementor' ),
-				]
-			);
-			$repeaterBody->add_control(
-				'align', [
-					'label' => esc_html__( 'Alignment', 'ultimate-data-table-addon-for-elementor' ),
-					'type' => Controls_Manager::CHOOSE,
-					'condition' => [
-						'advance' => 'yes',
-					],
-					'options' => [
-						'left' => [
-							'title' => esc_html__( 'Left', 'ultimate-data-table-addon-for-elementor' ),
-							'icon' => 'eicon-text-align-left',
-						],
-						'center' => [
-							'title' => esc_html__( 'Center', 'ultimate-data-table-addon-for-elementor' ),
-							'icon' => 'eicon-text-align-center',
-						],
-						'right' => [
-							'title' => esc_html__( 'Right', 'ultimate-data-table-addon-for-elementor' ),
-							'icon' => 'eicon-text-align-right',
-						],
-						'justify' => [
-							'title' => esc_html__( 'Justified', 'ultimate-data-table-addon-for-elementor' ),
-							'icon' => 'eicon-text-align-justify',
-						],
-					],
-					'default' => '',
-					'selectors' => [
-						'{{WRAPPER}} .ultimate-data-table table .ultimate-data-table-body {{CURRENT_ITEM}}' => 'text-align: {{VALUE}};',
-					],
-					'separator' => 'before'
-				]
-			);
-			$repeaterBody->add_group_control(
-				Group_Control_Typography::get_type(),
-				[
-					'name' => 'this_typography',
-					'selector' => '{{WRAPPER}} .ultimate-data-table table .ultimate-data-table-body {{CURRENT_ITEM}}',
-					'condition' => [
-						'advance' => 'yes',
-					],
-				]
-			);
-			$repeaterBody->add_control(
-				'this_color',
-				[
-					'label' => esc_html__( 'Color', 'ultimate-data-table-addon-for-elementor' ),
-					'type' => Controls_Manager::COLOR,
-					'selectors' => [
-						'{{WRAPPER}} .ultimate-data-table table .ultimate-data-table-body {{CURRENT_ITEM}}' => 'color: {{VALUE}}',
-					],
-					'condition' => [
-						'advance' => 'yes',
-					],
-				]
-			);
-			$repeaterBody->add_group_control(
-				Group_Control_Background::get_type(),
-				[
-					'name' => 'this_background',
-					'types' => [ 'classic', 'gradient' ],
-					'selector' => '{{WRAPPER}} .ultimate-data-table table .ultimate-data-table-body {{CURRENT_ITEM}}',
-					'condition' => [
-						'advance' => 'yes',
-					],
-				]
-			);
+				);
+					$repeaterBody->add_control(
+						'row', [
+							'label' => esc_html__( 'New Row', 'ultimate-data-table-addon-for-elementor' ),
+							'type' => Controls_Manager::SWITCHER,
+							'label_off' => esc_html__( 'No', 'ultimate-data-table-addon-for-elementor' ),
+							'label_on' => esc_html__( 'Yes', 'ultimate-data-table-addon-for-elementor' ),
+						]
+					);
+					$repeaterBody->add_control(
+						'text', [
+							'label' => esc_html__( 'Text', 'ultimate-data-table-addon-for-elementor' ),
+							'type' => Controls_Manager::TEXTAREA,
+							'label_block' => true,
+							'placeholder' => esc_html__( 'Table Data', 'ultimate-data-table-addon-for-elementor' ),
+							'default' => esc_html__( 'Table Data', 'ultimate-data-table-addon-for-elementor' ),
+							'dynamic' => [
+								'active' => true,
+							],
+							'separator' => 'before'
+						]
+					);
+				$repeaterBody->end_controls_tab();
+
+				$repeaterBody->start_controls_tab(
+					'table_body_style_tab',
+					[
+						'label' => esc_html__( 'Style', 'ultimate-data-table-addon-for-elementor' ),
+					]
+				);
+					$repeaterBody->add_control(
+						'align', [
+							'label' => esc_html__( 'Alignment', 'ultimate-data-table-addon-for-elementor' ),
+							'type' => Controls_Manager::CHOOSE,
+							'options' => [
+								'left' => [
+									'title' => esc_html__( 'Left', 'ultimate-data-table-addon-for-elementor' ),
+									'icon' => 'eicon-text-align-left',
+								],
+								'center' => [
+									'title' => esc_html__( 'Center', 'ultimate-data-table-addon-for-elementor' ),
+									'icon' => 'eicon-text-align-center',
+								],
+								'right' => [
+									'title' => esc_html__( 'Right', 'ultimate-data-table-addon-for-elementor' ),
+									'icon' => 'eicon-text-align-right',
+								],
+								'justify' => [
+									'title' => esc_html__( 'Justified', 'ultimate-data-table-addon-for-elementor' ),
+									'icon' => 'eicon-text-align-justify',
+								],
+							],
+							'default' => '',
+							'selectors' => [
+								'{{WRAPPER}} .ultimate-data-table table .ultimate-data-table-body {{CURRENT_ITEM}}' => 'text-align: {{VALUE}};',
+							],
+							'separator' => 'before'
+						]
+					);
+					$repeaterBody->add_control(
+						'this_color',
+						[
+							'label' => esc_html__( 'Color', 'ultimate-data-table-addon-for-elementor' ),
+							'type' => Controls_Manager::COLOR,
+							'selectors' => [
+								'{{WRAPPER}} .ultimate-data-table table .ultimate-data-table-body {{CURRENT_ITEM}}' => 'color: {{VALUE}}',
+							],
+						]
+					);
+					$repeaterBody->add_control(
+						'this_background',
+						[
+							'label' => esc_html__( 'Background Color', 'ultimate-data-table-addon-for-elementor' ),
+							'type' => Controls_Manager::COLOR,
+							'selectors' => [
+								'{{WRAPPER}} .ultimate-data-table table .ultimate-data-table-body {{CURRENT_ITEM}}' => 'background-color: {{VALUE}};',
+							],
+						]
+					);
+				$repeaterBody->end_controls_tab();
+
+				$repeaterBody->start_controls_tab(
+					'table_body_advance_tab',
+					[
+						'label' => esc_html__( 'Advanced', 'ultimate-data-table-addon-for-elementor' ),
+					]
+				);
+					$repeaterBody->add_control(
+						'colspan', [
+							'label' => esc_html__( 'colSpan', 'ultimate-data-table-addon-for-elementor' ),
+							'type' => Controls_Manager::SWITCHER,
+							'label_off' => esc_html__( 'No', 'ultimate-data-table-addon-for-elementor' ),
+							'label_on' => esc_html__( 'Yes', 'ultimate-data-table-addon-for-elementor' ),
+							'separator' => 'before'
+						]
+					);
+					$repeaterBody->add_control(
+						'colspannumber', [
+							'label' => esc_html__( 'colSpan Number', 'ultimate-data-table-addon-for-elementor' ),
+							'type' => Controls_Manager::TEXT,
+							'condition' => [
+								'colspan' => 'yes',
+							],
+							'placeholder' => esc_html__( '1', 'ultimate-data-table-addon-for-elementor' ),
+							'default' => esc_html__( '1', 'ultimate-data-table-addon-for-elementor' ),
+						]
+					);
+					$repeaterBody->add_control(
+						'rowspan', [
+							'label' => esc_html__( 'rowSpan', 'ultimate-data-table-addon-for-elementor' ),
+							'type' => Controls_Manager::SWITCHER,
+							'label_off' => esc_html__( 'No', 'ultimate-data-table-addon-for-elementor' ),
+							'label_on' => esc_html__( 'Yes', 'ultimate-data-table-addon-for-elementor' ),
+						]
+					);
+					$repeaterBody->add_control(
+						'rowspannumber', [
+							'label' => esc_html__( 'rowSpan Number', 'ultimate-data-table-addon-for-elementor' ),
+							'type' => Controls_Manager::TEXT,
+							'condition' => [
+								'rowspan' => 'yes',
+							],
+							'placeholder' => esc_html__( '1', 'ultimate-data-table-addon-for-elementor' ),
+							'default' => esc_html__( '1', 'ultimate-data-table-addon-for-elementor' ),
+						]
+					);
+				$repeaterBody->end_controls_tab();
+			$repeaterBody->end_controls_tabs();
+			
 			$this->add_control(
 				'table_body',
 				[
@@ -2118,9 +2104,7 @@ class Ultimate_Data_Table_Register_Elementor_Widget extends \Elementor\Widget_Ba
 	                        $this->add_inline_editing_attributes($repeater_setting_key);
 		                    if (
 			                    !empty($headeritem['colspan']) &&
-			                    $headeritem['colspan'] === 'yes' &&
-			                    !empty($headeritem['advance']) &&
-			                    $headeritem['advance'] === 'yes'
+			                    $headeritem['colspan'] === 'yes'
 		                    ) {
 			                    $this->add_render_attribute($repeater_setting_key, 'colspan', $headeritem['colspannumber']);
 		                    }
@@ -2168,9 +2152,8 @@ class Ultimate_Data_Table_Register_Elementor_Widget extends \Elementor\Widget_Ba
 	                    $cell_attr = [];
 						
 						if (
-							isset($item['colspan'], $item['advance']) &&
+							isset($item['colspan']) &&
 							$item['colspan'] === 'yes' &&
-							$item['advance'] === 'yes' &&
 							!empty($item['colspannumber'])
 						) {
 							$cell_attr[] = 'colspan=' . intval($item['colspannumber']);
@@ -2183,9 +2166,8 @@ class Ultimate_Data_Table_Register_Elementor_Widget extends \Elementor\Widget_Ba
 						}
 						
 						if (
-							isset($item['rowspan'], $item['advance']) &&
+							isset($item['rowspan']) &&
 							$item['rowspan'] === 'yes' &&
-							$item['advance'] === 'yes' &&
 							!empty($item['rowspannumber'])
 						) {
 							$cell_attr[] = 'rowspan=' . intval($item['rowspannumber']);
@@ -2224,4 +2206,78 @@ class Ultimate_Data_Table_Register_Elementor_Widget extends \Elementor\Widget_Ba
 	    </div>
 
 	<?php }
+
+	protected function content_template() {
+		?>
+		<#
+		var unique = 'uni-' + view.getID();
+		var header_count = settings.table_header ? settings.table_header.length : 0;
+		#>
+		<div class="ultimate-data-table">
+			<table id="{{ 'ultimate-datatable-' + unique }}">
+				<thead class="ultimate-data-table-header">
+					<tr>
+						<#
+						_.each( settings.table_header, function( headeritem, index ) {
+							var headerKey = view.getRepeaterSettingKey( 'text', 'table_header', index );
+							view.addInlineEditingAttributes( headerKey );
+
+							if ( 'yes' === headeritem.colspan && headeritem.colspannumber ) {
+								view.addRenderAttribute( headerKey, 'colspan', headeritem.colspannumber );
+							}
+
+							view.addRenderAttribute( headerKey, 'class', [
+								'elementor-inline-editing',
+								'elementor-repeater-item-' + headeritem._id
+							] );
+						#>
+							<th {{{ view.getRenderAttributeString( headerKey ) }}}>{{{ headeritem.text }}}</th>
+						<# } ); #>
+					</tr>
+				</thead>
+
+				<tbody class="ultimate-data-table-body">
+					<#
+					var cell_count = 0;
+					#>
+					<tr>
+						<#
+						_.each( settings.table_body, function( item, index ) {
+							var bodyKey = view.getRepeaterSettingKey( 'text', 'table_body', index );
+							view.addInlineEditingAttributes( bodyKey );
+
+							if ( 'yes' === item.row && cell_count > 0 ) {
+								var missing_cells = header_count - cell_count;
+								for ( var i = 0; i < missing_cells; i++ ) { #>
+									<td style="display:none;"></td>
+								<# }
+								#></tr><tr><#
+								cell_count = 0;
+							}
+
+							if ( 'yes' === item.colspan && item.colspannumber ) {
+								view.addRenderAttribute( bodyKey, 'colspan', parseInt( item.colspannumber, 10 ) );
+							}
+
+							if ( 'yes' === item.rowspan && item.rowspannumber ) {
+								view.addRenderAttribute( bodyKey, 'rowspan', parseInt( item.rowspannumber, 10 ) );
+							}
+
+							view.addRenderAttribute( bodyKey, 'class', 'elementor-repeater-item-' + item._id );
+						#>
+							<td {{{ view.getRenderAttributeString( bodyKey ) }}}>{{{ item.text }}}</td>
+						<#
+							cell_count++;
+						} );
+
+						var missing_cells = header_count - cell_count;
+						for ( var i = 0; i < missing_cells; i++ ) { #>
+							<td style="display:none;"></td>
+						<# } #>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<?php
+	}
 }

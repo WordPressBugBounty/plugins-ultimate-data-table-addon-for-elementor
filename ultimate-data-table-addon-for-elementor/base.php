@@ -66,6 +66,10 @@ final class ultimate_data_table_Extension {
 
     // Register the Elementor widget
     public function ultimate_data_table_register_elementor_widget() {
+        if ( defined( 'ULTIMATE_DATA_TABLE_PRO_ACTIVE' ) ) {
+            return;
+        }
+        
         include ULTIMATE_DATA_TABLE_DIR_PATH . 'widget/el-ultimate-data-table.php';
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Ultimate_Data_Table_Register_Elementor_Widget());
     }
