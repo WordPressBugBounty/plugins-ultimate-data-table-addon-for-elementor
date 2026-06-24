@@ -6,11 +6,11 @@
 ** Author URI:** https://rstheme.com/
 **Contributors:** rstheme2017
 **Tags:** elementor, data table, responsive table, data tables, Elementor addon 
-**Version:** 1.0.1
+**Version:** 1.0.2 
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
-**Stable tag:** 1.0.1  
-**Tested up to:** 7.0 
+**Stable tag:** 1.0.2  
+**Tested up to:** 6.9 
 **Requires PHP:** 7.4  
 **Requires at least:** 6.3  
 
@@ -124,8 +124,13 @@ Yes the plugin requires :
 4. Rowspan and Colspan support demo.  
 
 ## Changelog ##
-= 1.0.1 (18 June 2026) =  
-* Optimize data table addon for instant rendering the table on elementor editor.
+
+= 1.0.2 =
+* Added Elementor Template Library
+
+= 1.0.1 =
+* Optimize data table addon for instant rendering the table on Elementor editor.
+
 = 1.0.0 =  
 * Initial release with Elementor integration, responsive tables, search, pagination, ordering, rowspan, colspan, and basic styling.
 
