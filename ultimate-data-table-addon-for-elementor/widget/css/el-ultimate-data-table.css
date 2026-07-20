@@ -11,6 +11,11 @@
   --borderWidth: 1px;
   --borderStyle: solid;
 }
+.ultimate-data-table svg {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
 .ultimate-data-table .dt-layout-cell.dt-layout-full {
   overflow-x: auto;
 }
