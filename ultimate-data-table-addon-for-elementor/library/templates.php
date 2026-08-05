@@ -48,10 +48,20 @@ defined( 'ABSPATH' ) || exit;
     </a>
 </script>
 
+<?php
+    $udta_pro_installed    = class_exists( 'Ultimate_Data_Table_Pro_Extension' );
+    $udta_pro_action_url   = $udta_pro_installed
+        ? admin_url( 'admin.php?page=ultimate-data-table-pro-license' )
+        : 'https://plugins.rstheme.com/ultimate-data-table#pricing';
+    $udta_pro_action_label = $udta_pro_installed
+        ? __( 'Activate License', 'ultimate-data-table-addon-for-elementor' )
+        : __( 'Get Pro', 'ultimate-data-table-addon-for-elementor' );
+    $udta_pro_action_icon  = $udta_pro_installed ? 'eicon-lock' : 'eicon-external-link-square';
+?>
 <script type="text/template" id="tmpl-udtaTemplateLibrary__pro-button">
-    <a class="elementor-template-library-template-action elementor-button udtaTemplateLibrary__pro-button" href="https://plugins.rstheme.com/ultimate-data-table#pricing" target="_blank">
-        <i class="eicon-external-link-square" aria-hidden="true"></i>
-        <span class="elementor-button-title"><?php esc_html_e( 'Get Pro', 'ultimate-data-table-addon-for-elementor' ); ?></span>
+    <a class="elementor-template-library-template-action elementor-button udtaTemplateLibrary__pro-button" href="<?php echo esc_url( $udta_pro_action_url ); ?>" target="_blank">
+        <i class="<?php echo esc_attr( $udta_pro_action_icon ); ?>" aria-hidden="true"></i>
+        <span class="elementor-button-title"><?php echo esc_html( $udta_pro_action_label ); ?></span>
     </a>
 </script>
 

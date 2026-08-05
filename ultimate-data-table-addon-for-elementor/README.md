@@ -6,9 +6,9 @@
 **Plugin URI:** https://wordpress.org/plugins/ultimate-data-table-addon-for-elementor/
 **Tags:** elementor, data table, responsive table, data tables, table addon
 **Requires at least:** 6.3
-**Tested up to:** 7.0.2
+**Tested up to:** 7.0.0
 **Requires PHP:** 7.4
-**Stable tag:** 1.0.3
+**Stable tag:** 1.0.4
 **License:** GPLv2 or later
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,6 +19,8 @@ Build fully customizable, responsive, and feature-rich data tables in Elementor 
 **Ultimate Data Table Addon For Elementor** is the easiest way to build beautiful, functional, and fully responsive data tables directly inside Elementor. Powered by DataTables.js, it gives you complete control over your table’s content, behavior, and design — all from the familiar Elementor panel, without writing a single line of code.
 
 Whether you’re displaying pricing plans, product specs, schedules, comparison tables, or any structured data, this plugin has you covered. Add live search, pagination, column sorting, merged cells, custom labels, and pixel-perfect styling in minutes. To get started even faster, insert a **pre-made template** from the built-in library and customize it to match your brand.
+
+👉 **[View Live Demos](https://plugins.rstheme.com/ultimate-data-table/demos/)** | **[Get Ultimate Data Table Pro](https://plugins.rstheme.com/ultimate-data-table/)**
 
 ### Why you’ll love it ###
 
@@ -79,6 +81,8 @@ Upgrade to **Ultimate Data Table Pro** to turn plain text cells into rich conten
 * 🎨 **Dedicated Style Sections** — Separate Image, Icon, and Button styling panels for fine-grained control.
 * 🧩 **27 Premium Templates** — Unlock the full premium template pack (in addition to the 6 free templates) for one-click professional tables.
 
+👉 **[Get Ultimate Data Table Pro](https://plugins.rstheme.com/ultimate-data-table/)**
+
 ## Requirements ##
 
 * WordPress 6.3 or newer
@@ -124,6 +128,48 @@ Table content is powered by Elementor repeater fields, so you manage structured 
 = Is there a limit on how many tables or rows I can create? =
 No. You can create as many tables and rows as you need.
 
+= Where do I find the widget in Elementor? =
+Open any page with Elementor and look for the **Ultimate Table** category in the widget panel, or type “Data Table” in the widget search box. Drag the widget onto your page to get started.
+
+= Do I need Elementor Pro? =
+No. The plugin works with the free version of Elementor. Elementor Pro is not required.
+
+= Can I use more than one table on the same page? =
+Yes. Each widget runs as its own independent table, so you can place as many tables as you like on a single page, each with its own settings and styling.
+
+= How do I merge cells (rowspan / colspan)? =
+Open the cell you want to merge in the Table Header or Table Body repeater, switch to the **Advanced** tab, enable **colSpan** or **rowSpan**, and set the number of columns or rows the cell should span.
+
+= Can visitors choose how many rows are shown at once? =
+Yes. When pagination is enabled, an entries-per-page dropdown is shown so visitors can switch between the available row counts. You can rename its label from the Configuration section.
+
+= Can I turn off the search box, pagination, or sorting? =
+Yes. **Enable Search**, **Enable Pagination**, **Enable Ordering**, and **Show Table Info** are separate switches in the Configuration section, so you can enable only the features you need.
+
+= What pagination styles are available? =
+Seven options: Default, Simple (Prev / Next), Simple Numbers, Numbers Only, Full (First / Prev / Next / Last), Full Numbers, and First + Numbers + Last.
+
+= Can I change or translate the search, pagination, and info text? =
+Yes. The search label, entries-per-page label, “no records found” message, and both table-info texts are editable per widget. The table info also supports the `_START_`, `_END_`, `_TOTAL_`, and `_MAX_` tokens. The plugin is translation-ready as well, using the `ultimate-data-table-addon-for-elementor` text domain.
+
+= Can I control the width of individual columns? =
+Yes. Enable **Custom Width** on a header cell and set the width, or use the Row/Column style section for wider layout control.
+
+= Can I import data from a CSV file or Google Sheets? =
+No. Table content is entered and managed through Elementor’s repeater fields inside the widget, which keeps your data with the page and editable in the live preview.
+
+= Does it work with any WordPress theme? =
+Yes. It renders through Elementor, so it works with any properly coded theme that supports Elementor.
+
+= What happens to my tables if I upgrade to Pro? =
+The Pro version takes over the Data Table widget and adds image, icon, and button cells plus the full template library. Your existing tables stay on the page and keep working — you simply gain the extra options in the panel.
+
+= Is there a live demo? =
+Yes. You can preview all table styles, templates, and features here: [https://plugins.rstheme.com/ultimate-data-table/demos/](https://plugins.rstheme.com/ultimate-data-table/demos/)
+
+= How do I get the Pro version? =
+You can purchase Ultimate Data Table Pro here: [https://plugins.rstheme.com/ultimate-data-table/](https://plugins.rstheme.com/ultimate-data-table/)
+
 = Where can I get support? =
 Support is available through the plugin’s support forum on WordPress.org.
 
@@ -136,6 +182,9 @@ Support is available through the plugin’s support forum on WordPress.org.
 5. Pre-made template library inside the Elementor editor.
 
 ## Changelog ##
+
+= 1.0.4 =
+* Template load bug solve.
 
 = 1.0.3 =
 * Bug Solve.
@@ -152,5 +201,5 @@ Support is available through the plugin’s support forum on WordPress.org.
 
 ## Upgrade Notice ##
 
-= 1.0.3 =
+= 1.0.4 =
 Adds the Elementor Template Library — insert ready-made data tables right in the editor.

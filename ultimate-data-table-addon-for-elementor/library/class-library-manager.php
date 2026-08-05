@@ -35,12 +35,20 @@ class Ultimate_Data_Table_Library_Manager {
 			true
 		);
 
+		// Pro templates unlock only when the Pro plugin is active AND its license is activated.
+		$pro_installed = class_exists( 'Ultimate_Data_Table_Pro_Extension' );
+		$pro_licensed  = $pro_installed
+			&& class_exists( 'Ultimate_Data_Table_Pro_License' )
+			&& Ultimate_Data_Table_Pro_License::is_active();
+
 		wp_localize_script(
 			'ultimate-data-table-templates-library',
 			'udtaLibraryLocalize',
 			[
-				'buttonIcon' => ULTIMATE_DATA_TABLE_DIR_URL . 'assets/img/udta-icon.png',
-				'hasPro'     => class_exists( 'Ultimate_Data_Table_Pro_Extension' ),
+				'buttonIcon'   => ULTIMATE_DATA_TABLE_DIR_URL . 'assets/img/udta-icon.png',
+				'hasPro'       => $pro_licensed,
+				'proInstalled' => $pro_installed,
+				'licenseUrl'   => admin_url( 'admin.php?page=ultimate-data-table-pro-license' ),
 			]
 		);
 	}

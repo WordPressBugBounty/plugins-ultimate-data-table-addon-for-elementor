@@ -2,51 +2,50 @@
 
 use Elementor\TemplateLibrary\Source_Base;
 
-defined( 'ABSPATH' ) || die();
+defined('ABSPATH') || die();
 
-class  Ultimate_Data_Table_Library_Source extends Source_Base {
+class Ultimate_Data_Table_Library_Source extends Source_Base {
+	public const LIBRARY_CACHE_KEY = 'udta_elementor_library_cache';
 
-	const LIBRARY_CACHE_KEY = 'udta_elementor_library_cache';
+	public const API_TEMPLATES_INFO_URL = 'https://api.rstheme.com/elementor-library';
+	public const API_TEMPLATE_DATA_URL = 'https://api.rstheme.com/elementor-library/single';
 
-	const API_TEMPLATES_INFO_URL = 'https://api.rstheme.com/elementor-library';
-
-	const API_TEMPLATE_DATA_URL = 'https://api.rstheme.com/elementor-library/single';
 
 	public function get_id() {
 		return 'udta-elementor-library';
 	}
 
 	public function get_title() {
-		return __( 'Ultimate Data Table', 'ultimate-data-table-addon-for-elementor' );
+		return __('Ultimate Data Table', 'ultimate-data-table-addon-for-elementor');
 	}
 
 	public function register_data() {
 	}
 
-	public function save_item( $template_data ) {
-		return new \WP_Error( 'invalid_request', 'Cannot save template to a ultimate data table library' );
+	public function save_item($template_data) {
+		return new \WP_Error('invalid_request', 'Cannot save template to a ultimate data table library');
 	}
 
-	public function update_item( $new_data ) {
-		return new \WP_Error( 'invalid_request', 'Cannot update template to a ultimate data table library' );
+	public function update_item($new_data) {
+		return new \WP_Error('invalid_request', 'Cannot update template to a ultimate data table library');
 	}
 
-	public function delete_template( $template_id ) {
-		return new \WP_Error( 'invalid_request', 'Cannot delete template from a ultimate data table library' );
+	public function delete_template($template_id) {
+		return new \WP_Error('invalid_request', 'Cannot delete template from a ultimate data table library');
 	}
 
-	public function export_template( $template_id ) {
-		return new \WP_Error( 'invalid_request', 'Cannot export template from a ultimate data table library' );
+	public function export_template($template_id) {
+		return new \WP_Error('invalid_request', 'Cannot export template from a ultimate data table library');
 	}
 
-	public function get_items( $args = [] ) {
+	public function get_items($args = []) {
 		$library_data = $this->get_library_data();
 
 		$templates = [];
 
-		if ( ! empty( $library_data[ 'templates' ] ) ) {
-			foreach ( $library_data[ 'templates' ] as $template_data ) {
-				$templates[] = $this->prepare_template( $template_data );
+		if (! empty($library_data[ 'templates' ])) {
+			foreach ($library_data[ 'templates' ] as $template_data) {
+				$templates[] = $this->prepare_template($template_data);
 			}
 		}
 
@@ -56,16 +55,16 @@ class  Ultimate_Data_Table_Library_Source extends Source_Base {
 	public function get_categories() {
 		$library_data = $this->get_library_data();
 
-		return ( ! empty( $library_data[ 'categories' ] ) ? $library_data[ 'categories' ] : [] );
+		return (! empty($library_data[ 'categories' ]) ? $library_data[ 'categories' ] : []);
 	}
 
 	public function get_types() {
 		$library_data = $this->get_library_data();
 
-		return ( ! empty( $library_data[ 'types' ] ) ? $library_data[ 'types' ] : [] );
+		return (! empty($library_data[ 'types' ]) ? $library_data[ 'types' ] : []);
 	}
 
-	private function prepare_template( array $template_data ) {
+	private function prepare_template(array $template_data) {
 		return [
 			'id'        => $template_data[ 'id' ] ?? 0,
 			'title'     => $template_data[ 'title' ] ?? '',
@@ -77,11 +76,11 @@ class  Ultimate_Data_Table_Library_Source extends Source_Base {
 		];
 	}
 
-	private function request_library_data( $force_update = false ) {
-		$data = get_option( self::LIBRARY_CACHE_KEY );
+	private function request_library_data($force_update = false) {
+		$data = get_option(self::LIBRARY_CACHE_KEY);
 
-		if ( $force_update || empty( $data ) ) {
-			$timeout = ( $force_update ) ? 25 : 8;
+		if ($force_update || empty($data)) {
+			$timeout = ($force_update) ? 25 : 8;
 
 			$response = wp_remote_get(
 				add_query_arg(
@@ -95,82 +94,75 @@ class  Ultimate_Data_Table_Library_Source extends Source_Base {
 				]
 			);
 
-			if ( is_wp_error( $response ) || 200 !== (int) wp_remote_retrieve_response_code( $response ) ) {
-				update_option( self::LIBRARY_CACHE_KEY, [] );
+			if (is_wp_error($response) || 200 !== (int) wp_remote_retrieve_response_code($response)) {
+				update_option(self::LIBRARY_CACHE_KEY, []);
 
 				return false;
 			}
 
-			$data = json_decode( wp_remote_retrieve_body( $response ), true );
+			$data = json_decode(wp_remote_retrieve_body($response), true);
 
-			if ( empty( $data ) || ! is_array( $data ) ) {
-				update_option( self::LIBRARY_CACHE_KEY, [] );
+			if (empty($data) || ! is_array($data)) {
+				update_option(self::LIBRARY_CACHE_KEY, []);
 
 				return false;
 			}
 
-			update_option( self::LIBRARY_CACHE_KEY, $data, 'no' );
+			update_option(self::LIBRARY_CACHE_KEY, $data, 'no');
 		}
 
 		return $data;
 	}
 
-	public function get_library_data( $force_update = false ) {
-		$this->request_library_data( $force_update );
+	public function get_library_data($force_update = false) {
+		$this->request_library_data($force_update);
 
-		$data = get_option( self::LIBRARY_CACHE_KEY );
+		$data = get_option(self::LIBRARY_CACHE_KEY);
 
-		if ( empty( $data ) ) {
+		if (empty($data)) {
 			return [];
 		}
 
 		return $data;
 	}
 
-	public function get_item( $template_id ) {
+	public function get_item($template_id) {
 		$templates = $this->get_items();
 
 		return $templates[ $template_id ];
 	}
 
-	public function request_template_data( $template_id ) {
-		if ( empty( $template_id ) ) {
+	public function request_template_data($template_id) {
+		if (empty($template_id)) {
 			return;
 		}
 
+		$headers = apply_filters("udta_template_req_headers", ["url" => get_site_url()]);
 		$response = wp_remote_get(
-			add_query_arg(
-				[
-					'product_name' => 'ultimate-data-table',
-					'template_id'  => $template_id,
-				],
-				self::API_TEMPLATE_DATA_URL
-			),
-			[
-				'timeout' => 25
-			]
+			add_query_arg([ 'product_name' => 'ultimate-data-table', 'template_id'  => $template_id ], self::API_TEMPLATE_DATA_URL),
+			[ 'timeout' => 25, 'headers' => $headers ]
 		);
 
-		return wp_remote_retrieve_body( $response );
+		return wp_remote_retrieve_body($response);
 	}
 
-	public function get_data( array $args, $context = 'display' ) {
-		$data = $this->request_template_data( $args[ 'template_id' ] );
+	public function get_data(array $args, $context = 'display') {
+		$data = $this->request_template_data($args[ 'template_id' ]);
 
-		$data = json_decode( $data, true );
+		$data = json_decode($data, true);
 
-		if ( empty( $data ) || empty( $data[ 'content' ] ) ) {
-			throw new \Exception( __( 'Template does not have any content', 'ultimate-data-table-addon-for-elementor' ) );
+		if (empty($data) || empty($data[ 'content' ])) {
+			throw new \Exception(__('Template does not have any content', 'ultimate-data-table-addon-for-elementor'));
 		}
 
-		$data[ 'content' ] = $this->replace_elements_ids( $data[ 'content' ] );
-		$data[ 'content' ] = $this->process_export_import_content( $data[ 'content' ], 'on_import' );
+		$data[ 'content' ] = $this->replace_elements_ids($data[ 'content' ]);
+		$data[ 'content' ] = $this->process_export_import_content($data[ 'content' ], 'on_import');
 
 		$post_id  = $args[ 'editor_post_id' ];
-		$document = \Elementor\Plugin::instance()->documents->get( $post_id );
+		$document = \Elementor\Plugin::instance()->documents->get($post_id);
 
-		if ( $document ) {
-			$data[ 'content' ] = $document->get_elements_raw_data( $data[ 'content' ], true );
+		if ($document) {
+			$data[ 'content' ] = $document->get_elements_raw_data($data[ 'content' ], true);
 		}
 
 		return $data;
