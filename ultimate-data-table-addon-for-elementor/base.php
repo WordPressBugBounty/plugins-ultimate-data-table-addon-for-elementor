@@ -10,6 +10,8 @@ final class ultimate_data_table_Extension {
 
 	public function __construct() {
 		add_action( 'plugins_loaded', [ $this, 'ultimate_data_table_init' ] );
+		add_action( 'elementor/controls/register', [ $this, 'ultimate_data_table_register_controls' ] );
+		add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'ultimate_data_table_editor_control_scripts' ] );
 	}
 
 	public static function init() {
@@ -32,6 +34,23 @@ final class ultimate_data_table_Extension {
 		include_once ULTIMATE_DATA_TABLE_DIR_PATH . 'library/class-library-manager.php';
 		include_once ULTIMATE_DATA_TABLE_DIR_PATH . 'library/class-library-source.php';
 		new Ultimate_Data_Table_Library_Manager();
+	}
+
+	// Register the lazy repeater control (shared with pro)
+	public function ultimate_data_table_register_controls( $controls_manager ) {
+		require_once ULTIMATE_DATA_TABLE_DIR_PATH . 'widget/controls/class-control-repeater.php';
+		$controls_manager->register( new Control_Udt_Repeater() );
+	}
+
+	// Editor script for the lazy repeater control
+	public function ultimate_data_table_editor_control_scripts() {
+		wp_enqueue_script(
+			'ultimate-data-table-control-lazy-repeater',
+			ULTIMATE_DATA_TABLE_DIR_URL . 'widget/js/control-repeater.js',
+			[ 'elementor-editor' ],
+			ULTIMATE_DATA_TABLE_VERSION,
+			true
+		);
 	}
 
 	// Register a custom Elementor category
@@ -75,6 +94,8 @@ final class ultimate_data_table_Extension {
 
 	// Register the Elementor widget
 	public function ultimate_data_table_register_elementor_widget() {
+		require_once ULTIMATE_DATA_TABLE_DIR_PATH . 'widget/class-widget-base.php';
+
 		if ( defined( 'ULTIMATE_DATA_TABLE_PRO_ACTIVE' ) ) {
 			return;
 		}

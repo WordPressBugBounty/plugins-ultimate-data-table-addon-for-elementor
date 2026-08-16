@@ -8,7 +8,7 @@
 **Requires at least:** 6.3
 **Tested up to:** 7.0.0
 **Requires PHP:** 7.4
-**Stable tag:** 1.0.4
+**Stable tag:** 1.0.5
 **License:** GPLv2 or later
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -80,6 +80,9 @@ Upgrade to **Ultimate Data Table Pro** to turn plain text cells into rich conten
 * 🔀 **Per-Cell Arrangement** — Order and combine image, text, icon, and button within a single cell.
 * 🎨 **Dedicated Style Sections** — Separate Image, Icon, and Button styling panels for fine-grained control.
 * 🧩 **27 Premium Templates** — Unlock the full premium template pack (in addition to the 6 free templates) for one-click professional tables.
+* 📤 **Import & Export** — Move table data in and out of the widget instead of filling repeater fields by hand.
+* 📄 **CSV Import & Export** — Import and export tables using CSV files for quick, efficient data management.
+* 📊 **Excel Import & Export** — Import and export tables directly with Excel (.xlsx) files, ideal for large datasets and existing spreadsheets.
 
 👉 **[Get Ultimate Data Table Pro](https://plugins.rstheme.com/ultimate-data-table/)**
 
@@ -155,8 +158,10 @@ Yes. The search label, entries-per-page label, “no records found” message, a
 = Can I control the width of individual columns? =
 Yes. Enable **Custom Width** on a header cell and set the width, or use the Row/Column style section for wider layout control.
 
-= Can I import data from a CSV file or Google Sheets? =
-No. Table content is entered and managed through Elementor’s repeater fields inside the widget, which keeps your data with the page and editable in the live preview.
+= Can I import data from a CSV or Excel file? =
+Yes. With the Pro version, you can import table data directly from **CSV (.csv)** and **Excel (.xlsx)** files. This makes it easy to add and manage large amounts of table data without manually entering each row through Elementor’s repeater fields.
+You can also continue to manage and edit your table content directly through Elementor’s repeater fields when needed.
+
 
 = Does it work with any WordPress theme? =
 Yes. It renders through Elementor, so it works with any properly coded theme that supports Elementor.
@@ -183,6 +188,19 @@ Support is available through the plugin’s support forum on WordPress.org.
 
 ## Changelog ##
 
+= 1.0.5 =
+
+**🆓 Free Version**
+
+* ⚡ **Structure Update:** Completely re-architected the system with a highly optimized architecture while maintaining full backward compatibility. Your existing tables will continue to work seamlessly without any changes.
+* 🚀 **Repeater Restructure:** Significantly optimized the DataTable element to handle thousands of columns and repeater items smoothly, eliminating lag, delays, and hanging issues.
+
+**⭐ Pro Version**
+
+* 📤 **Import & Export:** Added powerful Import/Export functionality for DataTables, making it easier to manage and transfer large amounts of table data.
+* 📄 **CSV Import & Export:** Import and export DataTables using CSV files for quick and efficient data management.
+* 📊 **Excel Import & Export:** Import and export DataTables directly using Excel files, making it easier to work with large datasets and existing spreadsheets.
+
 = 1.0.4 =
 * Template load bug solve.
 
@@ -201,5 +219,9 @@ Support is available through the plugin’s support forum on WordPress.org.
 
 ## Upgrade Notice ##
 
+= 1.0.5 =
+Re-architected core with full backward compatibility and a restructured repeater that handles thousands of columns and rows without lag. Pro adds CSV and Excel import/export.
+
 = 1.0.4 =
 Adds the Elementor Template Library — insert ready-made data tables right in the editor.
+
