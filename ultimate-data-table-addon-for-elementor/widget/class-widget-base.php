@@ -2246,18 +2246,8 @@ abstract class Ultimate_Data_Table_Widget_Base extends \Elementor\Widget_Base {
                             );
                         }
 
-                        $this->add_render_attribute(
-                            $table_body_key,
-                            'class',
-                            'elementor-repeater-item-' . $item['_id']
-                        );
-                        ?>
-                        <td
-                            <?php $this->print_render_attribute_string($table_body_key); ?>
-                        >
-                            <?php $this->render_body_cell_content( $item, $index ); ?>
-                        </td>
-                        <?php
+						$this->add_render_attribute( $table_body_key, 'class', 'elementor-repeater-item-' . $item['_id']); ?>
+						<td <?php $this->print_render_attribute_string($table_body_key); ?>><?php $this->render_body_cell_content( $item, $index ); ?></td><?php
 
                         $cell_count++;
                     }

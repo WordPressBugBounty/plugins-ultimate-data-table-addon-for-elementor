@@ -108,9 +108,12 @@
   outline: none !important;
   text-align: inherit;
 }
+.ultimate-data-table .dt-container .dt-layout-row table td {
+  white-space: pre-line;
+}
 @media (max-width: 767px) {
   .ultimate-data-table .dt-container .dt-layout-row table th,
   .ultimate-data-table .dt-container .dt-layout-row table td {
-    white-space: nowrap;
+     white-space: pre;
   }
 }
