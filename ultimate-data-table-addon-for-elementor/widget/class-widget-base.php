@@ -30,6 +30,7 @@ abstract class Ultimate_Data_Table_Widget_Base extends \Elementor\Widget_Base {
     }
 
     protected function register_controls() {
+        $this->register_import_export_section();
         $this->register_header_content_section();
         $this->register_body_content_section();
         $this->register_configuration_section();
@@ -81,6 +82,247 @@ abstract class Ultimate_Data_Table_Widget_Base extends \Elementor\Widget_Base {
         echo esc_html( $item['text'] );
     }
 
+    /**
+     * Groups header cells into rows on the "New Row" switcher, keeping each cell's repeater index.
+     */
+    protected function get_header_rows( $headers ) {
+        $rows = [];
+        $current = [];
+
+        foreach ( (array) $headers as $index => $item ) {
+            if ( isset( $item['row'] ) && 'yes' === $item['row'] && ! empty( $current ) ) {
+                $rows[] = $current;
+                $current = [];
+            }
+            $current[ $index ] = $item;
+        }
+
+        if ( ! empty( $current ) ) {
+            $rows[] = $current;
+        }
+
+        return $rows;
+    }
+
+    /**
+     * Column count of the table: the first header row spans every column, so sum its colspans.
+     */
+    protected function get_header_column_count( $header_rows ) {
+        if ( empty( $header_rows ) ) {
+            return 0;
+        }
+
+        $count = 0;
+        foreach ( $header_rows[0] as $item ) {
+            $count += ( ! empty( $item['colspan'] ) && 'yes' === $item['colspan'] ) ? max( 1, intval( $item['colspannumber'] ) ) : 1;
+        }
+
+        return $count;
+    }
+
+    protected function render_header() {
+        $settings    = $this->get_settings_for_display();
+        $header_rows = $this->get_header_rows( isset( $settings['table_header'] ) ? $settings['table_header'] : [] );
+
+        $header_row_count = count( $header_rows );
+
+        foreach ( $header_rows as $row_index => $row ) {
+            echo '<tr>';
+
+            foreach ( $row as $index => $headeritem ) {
+                $repeater_setting_key = $this->get_repeater_setting_key( 'text', 'table_header', $index );
+                $this->add_inline_editing_attributes( $repeater_setting_key );
+
+                if ( ! empty( $headeritem['colspan'] ) && 'yes' === $headeritem['colspan'] && ! empty( $headeritem['colspannumber'] ) ) {
+                    $this->add_render_attribute( $repeater_setting_key, 'colspan', intval( $headeritem['colspannumber'] ) );
+                }
+
+                // A rowspan reaching past the last header row crashes DataTables, so cap it.
+                $rowspan = ( ! empty( $headeritem['rowspan'] ) && 'yes' === $headeritem['rowspan'] ) ? min( intval( $headeritem['rowspannumber'] ), $header_row_count - $row_index ) : 1;
+                if ( $rowspan > 1 ) {
+                    $this->add_render_attribute( $repeater_setting_key, 'rowspan', $rowspan );
+                }
+
+                $this->add_render_attribute(
+                    $repeater_setting_key,
+                    'class',
+                    [
+                        'elementor-inline-editing',
+                        'elementor-repeater-item-' . $headeritem['_id'],
+                    ]
+                );
+                ?>
+                <th <?php $this->print_render_attribute_string( $repeater_setting_key ); ?>><?php echo esc_html( $headeritem['text'] ); ?></th>
+                <?php
+            }
+
+            echo '</tr>';
+        }
+
+        return $this->get_header_column_count( $header_rows );
+    }
+
+    /**
+     * Underscore template for the <thead> rows. Defines header_count for the body template that follows.
+     */
+    protected function header_content_template() {
+        ?>
+        <#
+        var header_rows = [];
+        var header_current = [];
+        _.each( settings.table_header, function( headeritem, index ) {
+            if ( 'yes' === headeritem.row && header_current.length ) {
+                header_rows.push( header_current );
+                header_current = [];
+            }
+            header_current.push( { item: headeritem, index: index } );
+        } );
+        if ( header_current.length ) {
+            header_rows.push( header_current );
+        }
+
+        var header_count = 0;
+        _.each( header_rows[0] || [], function( cell ) {
+            header_count += ( 'yes' === cell.item.colspan ) ? Math.max( 1, parseInt( cell.item.colspannumber, 10 ) || 1 ) : 1;
+        } );
+
+        _.each( header_rows, function( row, row_index ) { #>
+            <tr>
+            <# _.each( row, function( cell ) {
+                var headeritem = cell.item;
+                var headerKey = view.getRepeaterSettingKey( 'text', 'table_header', cell.index );
+                view.addInlineEditingAttributes( headerKey );
+
+                if ( 'yes' === headeritem.colspan && headeritem.colspannumber ) {
+                    view.addRenderAttribute( headerKey, 'colspan', parseInt( headeritem.colspannumber, 10 ) );
+                }
+
+                // A rowspan reaching past the last header row crashes DataTables, so cap it.
+                var rowspan = ( 'yes' === headeritem.rowspan ) ? Math.min( parseInt( headeritem.rowspannumber, 10 ) || 1, header_rows.length - row_index ) : 1;
+                if ( rowspan > 1 ) {
+                    view.addRenderAttribute( headerKey, 'rowspan', rowspan );
+                }
+
+                view.addRenderAttribute( headerKey, 'class', [
+                    'elementor-inline-editing',
+                    'elementor-repeater-item-' + headeritem._id
+                ] );
+            #>
+                <th {{{ view.getRenderAttributeString( headerKey ) }}}>{{{ headeritem.text }}}</th>
+            <# } ); #>
+            </tr>
+        <# } ); #>
+        <?php
+    }
+
+    /**
+     * Import/Export section. HTML import/export is built in; Pro adds its CSV and Excel
+     * controls through register_import_export_extra_controls().
+     */
+    protected function register_import_export_section() {
+        $this->start_controls_section(
+            'content_csv_import',
+            [
+                'label' => esc_html__('Import/Export', 'ultimate-data-table-addon-for-elementor'),
+                'tab' => Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
+        $this->register_import_export_extra_controls();
+
+        $this->add_control(
+            'html_import_export_heading',
+            [
+                'label' => esc_html__('HTML', 'ultimate-data-table-addon-for-elementor'),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->start_controls_tabs('html_import_export_tabs');
+
+        $this->start_controls_tab(
+            'html_import_tab',
+            [
+                'label' => esc_html__('HTML Import', 'ultimate-data-table-addon-for-elementor'),
+            ]
+        );
+        // Handled by widget/js/html-import.js — the textarea is not saved with the widget.
+        $this->add_control(
+            'html_import_source',
+            [
+                'type' => Controls_Manager::RAW_HTML,
+                'raw' => '<textarea class="udt-html-io-code" rows="8" spellcheck="false" placeholder="' . esc_attr__('Paste <table> HTML here, or load a file below.', 'ultimate-data-table-addon-for-elementor') . '"></textarea>
+                    <label class="udt-html-io-file">
+                        <input type="file" accept=".html,.htm,text/html" />
+                    </label>',
+                'content_classes' => 'udt-html-io',
+            ]
+        );
+        $this->add_control(
+            'html_import_notice',
+            [
+                'type' => Controls_Manager::RAW_HTML,
+                'raw' => esc_html__('Every <thead> row becomes a header row (without a <thead>, the first row is used). Colspan, rowspan, alignment, colors and link buttons are kept. Importing replaces the current Table Header and Table Body content.', 'ultimate-data-table-addon-for-elementor'),
+                'content_classes' => 'elementor-descriptor',
+            ]
+        );
+        $this->add_control(
+            'html_import_btn',
+            [
+                'type' => Controls_Manager::BUTTON,
+                'label' => esc_html__('Import', 'ultimate-data-table-addon-for-elementor'),
+                'text' => esc_html__('Import HTML', 'ultimate-data-table-addon-for-elementor'),
+                'event' => 'udt:html:import',
+            ]
+        );
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'html_export_tab',
+            [
+                'label' => esc_html__('HTML Export', 'ultimate-data-table-addon-for-elementor'),
+            ]
+        );
+        $this->add_control(
+            'html_export_notice',
+            [
+                'type' => Controls_Manager::RAW_HTML,
+                'raw' => esc_html__('Export the current Table Header and Table Body content as an HTML table.', 'ultimate-data-table-addon-for-elementor'),
+                'content_classes' => 'elementor-descriptor',
+            ]
+        );
+        $this->add_control(
+            'html_export_btn',
+            [
+                'type' => Controls_Manager::BUTTON,
+                'label' => esc_html__('Export', 'ultimate-data-table-addon-for-elementor'),
+                'text' => esc_html__('Export HTML', 'ultimate-data-table-addon-for-elementor'),
+                'event' => 'udt:html:export',
+            ]
+        );
+        $this->add_control(
+            'html_copy_btn',
+            [
+                'type' => Controls_Manager::BUTTON,
+                'label' => esc_html__('Copy', 'ultimate-data-table-addon-for-elementor'),
+                'text' => esc_html__('Copy HTML', 'ultimate-data-table-addon-for-elementor'),
+                'event' => 'udt:html:copy',
+            ]
+        );
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->end_controls_section();
+    }
+
+    /**
+     * Extension point: Pro adds its CSV and Excel import/export controls here,
+     * above the HTML controls.
+     */
+    protected function register_import_export_extra_controls() {}
+
     protected function register_header_content_section() {
         // Header Content Start
         $this->start_controls_section(
@@ -99,6 +341,15 @@ abstract class Ultimate_Data_Table_Widget_Base extends \Elementor\Widget_Base {
                     ]
                 );
                     $repeaterHeader->add_control(
+                        'row', [
+                            'label' => esc_html__( 'New Row', 'ultimate-data-table-addon-for-elementor' ),
+                            'type' => Controls_Manager::SWITCHER,
+                            'label_off' => esc_html__( 'No', 'ultimate-data-table-addon-for-elementor' ),
+                            'label_on' => esc_html__( 'Yes', 'ultimate-data-table-addon-for-elementor' ),
+                            'description' => esc_html__( 'Start a new header row with this cell. Use rowSpan on the cells above to build a two-line header.', 'ultimate-data-table-addon-for-elementor' ),
+                        ]
+                    );
+                    $repeaterHeader->add_control(
                         'text', [
                             'label' => esc_html__( 'Text', 'ultimate-data-table-addon-for-elementor' ),
                             'type' => Controls_Manager::TEXT,
@@ -107,7 +358,8 @@ abstract class Ultimate_Data_Table_Widget_Base extends \Elementor\Widget_Base {
                             'default' => esc_html__( 'Table Header', 'ultimate-data-table-addon-for-elementor' ),
                             'dynamic' => [
                                 'active' => true,
-                            ]
+                            ],
+                            'separator' => 'before'
                         ]
                     );
                 $repeaterHeader->end_controls_tab();
@@ -188,6 +440,25 @@ abstract class Ultimate_Data_Table_Widget_Base extends \Elementor\Widget_Base {
                             'type' => Controls_Manager::TEXT,
                             'condition' => [
                                 'colspan' => 'yes',
+                            ],
+                            'placeholder' => esc_html__( '1', 'ultimate-data-table-addon-for-elementor' ),
+                            'default' => esc_html__( '1', 'ultimate-data-table-addon-for-elementor' ),
+                        ]
+                    );
+                    $repeaterHeader->add_control(
+                        'rowspan', [
+                            'label' => esc_html__( 'rowSpan', 'ultimate-data-table-addon-for-elementor' ),
+                            'type' => Controls_Manager::SWITCHER,
+                            'label_off' => esc_html__( 'No', 'ultimate-data-table-addon-for-elementor' ),
+                            'label_on' => esc_html__( 'Yes', 'ultimate-data-table-addon-for-elementor' ),
+                        ]
+                    );
+                    $repeaterHeader->add_control(
+                        'rowspannumber', [
+                            'label' => esc_html__( 'rowSpan Number', 'ultimate-data-table-addon-for-elementor' ),
+                            'type' => Controls_Manager::TEXT,
+                            'condition' => [
+                                'rowspan' => 'yes',
                             ],
                             'placeholder' => esc_html__( '1', 'ultimate-data-table-addon-for-elementor' ),
                             'default' => esc_html__( '1', 'ultimate-data-table-addon-for-elementor' ),
@@ -754,7 +1025,7 @@ abstract class Ultimate_Data_Table_Widget_Base extends \Elementor\Widget_Base {
                     'label' => esc_html__( 'Background Color', 'ultimate-data-table-addon-for-elementor' ),
                     'type' => Controls_Manager::COLOR,
                     'selectors' => [
-                        '{{WRAPPER}} .ultimate-data-table table .ultimate-data-table-header' => 'background-color: {{VALUE}};',
+                        '{{WRAPPER}} .ultimate-data-table table .ultimate-data-table-header th' => 'background-color: {{VALUE}};',
                     ]
                 ]
             );
@@ -2161,38 +2432,7 @@ abstract class Ultimate_Data_Table_Widget_Base extends \Elementor\Widget_Base {
         <div class="ultimate-data-table">
             <table id="<?php echo esc_attr( 'ultimate-datatable-' . $unique ); ?>">
                 <thead class="ultimate-data-table-header">
-                    <tr>
-                        <?php
-                        $header_count = isset($settings['table_header']) ? count($settings['table_header']) : 0;
-
-                        foreach ($settings['table_header'] as $index => $headeritem) {
-
-                            $repeater_setting_key = $this->get_repeater_setting_key('text', 'table_header', $index);
-                            $this->add_inline_editing_attributes($repeater_setting_key);
-                            if (
-                                !empty($headeritem['colspan']) &&
-                                $headeritem['colspan'] === 'yes'
-                            ) {
-                                $this->add_render_attribute($repeater_setting_key, 'colspan', $headeritem['colspannumber']);
-                            }
-                            $this->add_render_attribute(
-                                $repeater_setting_key,
-                                'class',
-                                [
-                                    'elementor-inline-editing',
-                                    'elementor-repeater-item-' . $headeritem['_id'],
-                                ]
-                            );
-                            ?>
-                            <th
-                                <?php $this->print_render_attribute_string($repeater_setting_key); ?>
-                            >
-                                <?php echo esc_html( $headeritem['text'] ); ?>
-                            </th>
-                            <?php
-                        }
-                        ?>
-                    </tr>
+                    <?php $header_count = $this->render_header(); ?>
                 </thead>
 
                 <tbody class="ultimate-data-table-body">
@@ -2268,29 +2508,11 @@ abstract class Ultimate_Data_Table_Widget_Base extends \Elementor\Widget_Base {
         ?>
         <#
         var unique = 'uni-' + view.getID();
-        var header_count = settings.table_header ? settings.table_header.length : 0;
         #>
         <div class="ultimate-data-table">
             <table id="{{ 'ultimate-datatable-' + unique }}">
                 <thead class="ultimate-data-table-header">
-                    <tr>
-                        <#
-                        _.each( settings.table_header, function( headeritem, index ) {
-                            var headerKey = view.getRepeaterSettingKey( 'text', 'table_header', index );
-                            view.addInlineEditingAttributes( headerKey );
-
-                            if ( 'yes' === headeritem.colspan && headeritem.colspannumber ) {
-                                view.addRenderAttribute( headerKey, 'colspan', headeritem.colspannumber );
-                            }
-
-                            view.addRenderAttribute( headerKey, 'class', [
-                                'elementor-inline-editing',
-                                'elementor-repeater-item-' + headeritem._id
-                            ] );
-                        #>
-                            <th {{{ view.getRenderAttributeString( headerKey ) }}}>{{{ headeritem.text }}}</th>
-                        <# } ); #>
-                    </tr>
+                    <?php $this->header_content_template(); ?>
                 </thead>
 
                 <tbody class="ultimate-data-table-body">

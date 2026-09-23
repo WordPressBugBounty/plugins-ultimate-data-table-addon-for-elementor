@@ -42,12 +42,20 @@ final class ultimate_data_table_Extension {
 		$controls_manager->register( new Control_Udt_Repeater() );
 	}
 
-	// Editor script for the lazy repeater control
+	// Editor scripts: the lazy repeater control and HTML import/export
 	public function ultimate_data_table_editor_control_scripts() {
 		wp_enqueue_script(
 			'ultimate-data-table-control-lazy-repeater',
 			ULTIMATE_DATA_TABLE_DIR_URL . 'widget/js/control-repeater.js',
 			[ 'elementor-editor' ],
+			ULTIMATE_DATA_TABLE_VERSION,
+			true
+		);
+
+		wp_enqueue_script(
+			'ultimate-data-table-html-import',
+			ULTIMATE_DATA_TABLE_DIR_URL . 'widget/js/html-import.js',
+			[ 'elementor-editor', 'jquery' ],
 			ULTIMATE_DATA_TABLE_VERSION,
 			true
 		);

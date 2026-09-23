@@ -84,3 +84,21 @@
   color: #fff;
   font-family: Roboto, sans-serif;
 }
+.udt-html-io .udt-html-io-code {
+  display: block;
+  width: 100%;
+  min-height: 140px;
+  font-family: Menlo, Consolas, monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  resize: vertical;
+  white-space: pre;
+}
+.udt-html-io .udt-html-io-file {
+  display: block;
+  margin-top: 8px;
+}
+.udt-html-io .udt-html-io-file input {
+  max-width: 100%;
+  font-size: 11px;
+}

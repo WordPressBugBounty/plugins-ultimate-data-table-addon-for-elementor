@@ -1,14 +1,14 @@
 # Ultimate Data Table Addon For Elementor #
 
-**Contributors:** rstheme2017
+**Contributors:** rstheme2017, sagar7258
 **Author:** RSTheme
 **Author URI:** https://rstheme.com/
 **Plugin URI:** https://wordpress.org/plugins/ultimate-data-table-addon-for-elementor/
 **Tags:** elementor, data table, responsive table, data tables, table addon
 **Requires at least:** 6.3
-**Tested up to:** 7.1
+**Tested up to:** 7.1.0
 **Requires PHP:** 7.4
-**Stable tag:** 1.0.6
+**Stable tag:** 1.0.7
 **License:** GPLv2 or later
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,9 @@ Merge cells vertically to build grouped data structures.
 ↔ **Colspan Support**
 Merge cells horizontally for flexible layouts.
 
+🗂 **Multi-Row Headers**
+Build two-line (or deeper) headers with grouped columns, such as a "Dimensions" heading over A / B / C sub-columns.
+
 🎨 **Deep Styling Controls**
 Style the table globally and per-section — header, body, rows/columns, search box, entries dropdown, pagination, and table info. Control typography, colors, borders, padding, alignment, striped rows, and more.
 
@@ -83,6 +86,7 @@ Upgrade to **Ultimate Data Table Pro** to turn plain text cells into rich conten
 * 📤 **Import & Export** — Move table data in and out of the widget instead of filling repeater fields by hand.
 * 📄 **CSV Import & Export** — Import and export tables using CSV files for quick, efficient data management.
 * 📊 **Excel Import & Export** — Import and export tables directly with Excel (.xlsx) files, ideal for large datasets and existing spreadsheets.
+* 🧾 **HTML Import & Export** — Paste `<table>` markup or load an .html file; header rows, colspan, rowspan, alignment, colors, and link buttons are kept. Export or copy the table back as HTML.
 
 👉 **[Get Ultimate Data Table Pro](https://plugins.rstheme.com/ultimate-data-table/)**
 
@@ -143,6 +147,9 @@ Yes. Each widget runs as its own independent table, so you can place as many tab
 = How do I merge cells (rowspan / colspan)? =
 Open the cell you want to merge in the Table Header or Table Body repeater, switch to the **Advanced** tab, enable **colSpan** or **rowSpan**, and set the number of columns or rows the cell should span.
 
+= How do I build a two-line header? =
+In the Table Header repeater, turn on **New Row** (Content tab) for the first cell of the second header row. Give the grouping cell a **colSpan** covering its sub-columns, and give the cells with nothing below them a **rowSpan** of 2.
+
 = Can visitors choose how many rows are shown at once? =
 Yes. When pagination is enabled, an entries-per-page dropdown is shown so visitors can switch between the available row counts. You can rename its label from the Configuration section.
 
@@ -158,8 +165,8 @@ Yes. The search label, entries-per-page label, “no records found” message, a
 = Can I control the width of individual columns? =
 Yes. Enable **Custom Width** on a header cell and set the width, or use the Row/Column style section for wider layout control.
 
-= Can I import data from a CSV or Excel file? =
-Yes. With the Pro version, you can import table data directly from **CSV (.csv)** and **Excel (.xlsx)** files. This makes it easy to add and manage large amounts of table data without manually entering each row through Elementor’s repeater fields.
+= Can I import data from a CSV, Excel, or HTML file? =
+Yes. With the Pro version, you can import table data directly from **CSV (.csv)**, **Excel (.xlsx)**, and **HTML (.html or pasted `<table>` markup)**. This makes it easy to add and manage large amounts of table data without manually entering each row through Elementor’s repeater fields.
 You can also continue to manage and edit your table content directly through Elementor’s repeater fields when needed.
 
 
@@ -187,6 +194,21 @@ Support is available through the plugin’s support forum on WordPress.org.
 5. Pre-made template library inside the Elementor editor.
 
 ## Changelog ##
+
+= 1.0.8 =
+
+* Added: Raw HTML table markup import. Convert table HTML markup to Elementor Repeter items.
+
+= 1.0.7 =
+
+**🆓 Free Version**
+
+* 🗂 **Multi-Row Headers:** Header cells get a **New Row** switch and **rowSpan**, so you can build grouped two-line headers.
+* 🐞 **Fix:** A header rowSpan taller than the header no longer stops the table from loading.
+
+**⭐ Pro Version**
+
+* 🧾 **HTML Import & Export:** Import a table from pasted HTML or an .html file, keeping header rows, colspan, rowspan, alignment, colors, and link buttons. Export or copy the table as HTML.
 
 = 1.0.6 =
 * Fix: line break issue on table content
@@ -219,12 +241,3 @@ Support is available through the plugin’s support forum on WordPress.org.
 
 = 1.0.0 =
 * Initial release with Elementor integration, responsive tables, search, pagination, ordering, rowspan, colspan, and styling controls.
-
-## Upgrade Notice ##
-
-= 1.0.5 =
-Re-architected core with full backward compatibility and a restructured repeater that handles thousands of columns and rows without lag. Pro adds CSV and Excel import/export.
-
-= 1.0.4 =
-Adds the Elementor Template Library — insert ready-made data tables right in the editor.
-
