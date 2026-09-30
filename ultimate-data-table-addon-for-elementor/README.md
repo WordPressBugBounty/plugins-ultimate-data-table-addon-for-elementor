@@ -6,9 +6,9 @@
 **Plugin URI:** https://wordpress.org/plugins/ultimate-data-table-addon-for-elementor/
 **Tags:** elementor, data table, responsive table, data tables, table addon
 **Requires at least:** 6.3
-**Tested up to:** 7.1.0
+**Tested up to:** 7.1.2
 **Requires PHP:** 7.4
-**Stable tag:** 1.0.7
+**Stable tag:** 1.1.0
 **License:** GPLv2 or later
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,10 @@ Support is available through the plugin’s support forum on WordPress.org.
 5. Pre-made template library inside the Elementor editor.
 
 ## Changelog ##
+
+= 1.1.0 =
+
+* Added: Optimize code & added more hook.
 
 = 1.0.8 =
 

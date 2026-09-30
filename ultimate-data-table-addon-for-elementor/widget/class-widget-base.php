@@ -34,6 +34,7 @@ abstract class Ultimate_Data_Table_Widget_Base extends \Elementor\Widget_Base {
         $this->register_header_content_section();
         $this->register_body_content_section();
         $this->register_configuration_section();
+        $this->register_integration_section();
         $this->register_global_style_section();
         $this->register_header_style_section();
         $this->register_body_style_section();
@@ -43,6 +44,7 @@ abstract class Ultimate_Data_Table_Widget_Base extends \Elementor\Widget_Base {
         $this->register_entries_dropdown_style_section();
         $this->register_pagination_style_section();
         $this->register_info_style_section();
+        $this->register_integrated_form_style_section();
     }
 
     /**
@@ -74,6 +76,17 @@ abstract class Ultimate_Data_Table_Widget_Base extends \Elementor\Widget_Base {
     protected function get_body_cell_editing_key( $index ) {
         return $this->get_body_cell_td_render_key( $index );
     }
+
+    /**
+     * Extension point: Pro adds its Column Styles classes to a body cell here.
+     *
+     * @param string $render_key Render attribute key of the cell's <td>.
+     * @param array  $item       The cell's table_body repeater item.
+     * @param int    $index      The item's repeater index.
+     * @param int    $column     1-based table column the cell starts in, counting
+     *                           colspan and cells spanned down from rows above.
+     */
+    protected function add_body_cell_render_attributes( $render_key, $item, $index, $column ) {}
 
     /**
      * Extension point: Pro renders image/text/icon/button inside a .cell-inner wrapper here.
@@ -857,6 +870,12 @@ abstract class Ultimate_Data_Table_Widget_Base extends \Elementor\Widget_Base {
         $this->end_controls_section();
         // Configuration Content End
     }
+
+    /**
+     * Extension point: Pro adds its form integration section here,
+     * after the Configuration section.
+     */
+    protected function register_integration_section() {}
 
     protected function register_global_style_section() {
         // Table Global Style Start
@@ -2424,12 +2443,25 @@ abstract class Ultimate_Data_Table_Widget_Base extends \Elementor\Widget_Base {
         // Info Style End
     }
 
+    /**
+     * Extension point: Pro adds its Integrated Form style section here, last in the Style tab.
+     */
+    protected function register_integrated_form_style_section() {}
+
+    /**
+     * Extension point: Pro adds the integration popup ID to the table wrapper here.
+     */
+    protected function add_table_wrapper_render_attributes( $settings ) {}
+
     protected function render() {
         $settings = $this->get_settings_for_display();
         $unique   = 'uni-' . $this->get_id();
+
+        $this->add_render_attribute( 'table_wrapper', 'class', 'ultimate-data-table' );
+        $this->add_table_wrapper_render_attributes( $settings );
         ?>
 
-        <div class="ultimate-data-table">
+        <div <?php $this->print_render_attribute_string( 'table_wrapper' ); ?>>
             <table id="<?php echo esc_attr( 'ultimate-datatable-' . $unique ); ?>">
                 <thead class="ultimate-data-table-header">
                     <?php $header_count = $this->render_header(); ?>
@@ -2438,6 +2470,12 @@ abstract class Ultimate_Data_Table_Widget_Base extends \Elementor\Widget_Base {
                 <tbody class="ultimate-data-table-body">
                     <?php
                     $cell_count = 0;
+
+                    // Real column of each cell: next_column skips columns still
+                    // covered by a rowspan from above, and moves past colspans
+                    $next_column   = 1;
+                    $row_spans     = []; // column => rows it stays covered below this one
+                    $covered       = []; // columns covered in the current row
                     echo '<tr>';
 
                     foreach ($settings['table_body'] as $index => $item) {
@@ -2454,6 +2492,15 @@ abstract class Ultimate_Data_Table_Widget_Base extends \Elementor\Widget_Base {
 
                             echo '</tr><tr>';
                             $cell_count = 0;
+
+                            $next_column = 1;
+                            $covered     = [];
+                            foreach ( $row_spans as $col => $remaining ) {
+                                if ( $remaining > 0 ) {
+                                    $covered[ $col ]   = true;
+                                    $row_spans[ $col ] = $remaining - 1;
+                                }
+                            }
                         }
 
                         $cell_attr = [];
@@ -2485,6 +2532,24 @@ abstract class Ultimate_Data_Table_Widget_Base extends \Elementor\Widget_Base {
                                 intval($item['rowspannumber'])
                             );
                         }
+
+                        while ( isset( $covered[ $next_column ] ) ) {
+                            $next_column++;
+                        }
+
+                        $column  = $next_column;
+                        $colspan = ( isset( $item['colspan'] ) && 'yes' === $item['colspan'] ) ? max( 1, intval( $item['colspannumber'] ?? 1 ) ) : 1;
+                        $rowspan = ( isset( $item['rowspan'] ) && 'yes' === $item['rowspan'] ) ? max( 1, intval( $item['rowspannumber'] ?? 1 ) ) : 1;
+
+                        for ( $c = $column; $c < $column + $colspan; $c++ ) {
+                            if ( $rowspan > 1 ) {
+                                $row_spans[ $c ] = $rowspan - 1;
+                            }
+                        }
+
+                        $next_column += $colspan;
+
+                        $this->add_body_cell_render_attributes( $table_body_key, $item, $index, $column );
 
 						$this->add_render_attribute( $table_body_key, 'class', 'elementor-repeater-item-' . $item['_id']); ?>
 						<td <?php $this->print_render_attribute_string($table_body_key); ?>><?php $this->render_body_cell_content( $item, $index ); ?></td><?php
